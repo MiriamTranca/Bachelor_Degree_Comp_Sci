@@ -1,14 +1,13 @@
 # Computer Science Bachelor’s Degree Coursework
 
 Welcome to my repository for my Computer Science Bachelor’s degree at university!  
-This repository contains my work, projects, and exercises completed as part of my studies, including programming fundamentals, assignments, and personal learning.
+This repository contains my work and exercises completed for my studies, preparation for exams and personal learning.
 
 ## Contents
 
 - Programming assignments (Python, C++, Java, etc.)
-- Project documentation
+- Exercies used as preparation for exams
 - Source code and explanations
-- Exercies for exams
 
 ## Purpose
 
