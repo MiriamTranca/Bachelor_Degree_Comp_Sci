@@ -1,0 +1,10 @@
+﻿   Qt/MSBuild: 3.3.1.1
+   Qt: 6.9.0
+  Domain.cpp
+  Repository.cpp
+  Service.cpp
+  main.cpp
+  test3_cars.cpp
+C:\Users\tranc\source\repos\test3_cars\test3_cars.cpp(44,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  moc_test3_cars.cpp
+  test3_cars.vcxproj -> C:\Users\tranc\source\repos\test3_cars\x64\Debug\test3_cars.exe
