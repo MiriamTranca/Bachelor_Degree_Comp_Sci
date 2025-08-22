@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>test3_searchEngineClass</class>
+ <widget class="QWidget" name="test3_searchEngineClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>test3_searchEngine</string>
+  </property>
+  <widget class="QListWidget" name="listAllDocs">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>33</y>
+     <width>331</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>11</y>
+     <width>42</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>All docs</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="giveText">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>301</y>
+     <width>108</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonBestMatching">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>271</y>
+     <width>122</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Show best matching</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="printBestMatch">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>331</y>
+     <width>331</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="searchinText">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>280</y>
+     <width>161</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>250</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search doc</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="test3_searchEngine.qrc"/>
+ </resources>
+ <connections/>
+</ui>

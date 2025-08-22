@@ -1,0 +1,5 @@
+C++|program language|general-purpose prog language
+AQuadiric eq|Square root|a*x^2=0
+Java|program language|general-purpose prog langu
+Jack Sparrow|pirate|protagonist
+University|higher ed|postgrad
