@@ -1,0 +1,5 @@
+C:/Users/tranc/CLionProjects/ArtAuctionPlatform/cmake-build-debug/CMakeFiles/ArtAuctionPlatform.dir
+C:/Users/tranc/CLionProjects/ArtAuctionPlatform/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/tranc/CLionProjects/ArtAuctionPlatform/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/tranc/CLionProjects/ArtAuctionPlatform/cmake-build-debug/CMakeFiles/ArtAuctionPlatform_autogen_timestamp_deps.dir
+C:/Users/tranc/CLionProjects/ArtAuctionPlatform/cmake-build-debug/CMakeFiles/ArtAuctionPlatform_autogen.dir
