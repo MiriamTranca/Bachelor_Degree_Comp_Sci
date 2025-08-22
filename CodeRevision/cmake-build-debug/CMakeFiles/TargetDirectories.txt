@@ -1,5 +1,0 @@
-C:/Users/tranc/CLionProjects/CodeRevision/cmake-build-debug/CMakeFiles/CodeRevision.dir
-C:/Users/tranc/CLionProjects/CodeRevision/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/tranc/CLionProjects/CodeRevision/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/tranc/CLionProjects/CodeRevision/cmake-build-debug/CMakeFiles/CodeRevision_autogen_timestamp_deps.dir
-C:/Users/tranc/CLionProjects/CodeRevision/cmake-build-debug/CMakeFiles/CodeRevision_autogen.dir
