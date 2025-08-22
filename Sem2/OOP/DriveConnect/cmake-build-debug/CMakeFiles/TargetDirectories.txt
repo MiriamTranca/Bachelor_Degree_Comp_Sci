@@ -1,0 +1,5 @@
+C:/Users/tranc/CLionProjects/DriveConnect/cmake-build-debug/CMakeFiles/DriveConnect.dir
+C:/Users/tranc/CLionProjects/DriveConnect/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/tranc/CLionProjects/DriveConnect/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/tranc/CLionProjects/DriveConnect/cmake-build-debug/CMakeFiles/DriveConnect_autogen_timestamp_deps.dir
+C:/Users/tranc/CLionProjects/DriveConnect/cmake-build-debug/CMakeFiles/DriveConnect_autogen.dir
