@@ -1,0 +1,21 @@
+#pragma once
+void testCreateEstate();
+void testGetEstateAddress();
+void testGetEstateType();
+void testGetEstateSurface();
+void testGetEstatePrice();
+void testCreateEstateRepository();
+void testAddEstate();
+void testDeleteEstate();
+void testUpdateEstate();
+void testFindEstateByAddress();
+void testCreateEstateService();
+void testGetFilteredEstatesByTypeAndSurface();
+void testGetFilteredEstatesByAddress();
+void testGetSortedEstates();
+void testCreateActionStack();
+void testPushAction();
+void testPopAction();
+void testUndoRedo();
+
+void testAll();

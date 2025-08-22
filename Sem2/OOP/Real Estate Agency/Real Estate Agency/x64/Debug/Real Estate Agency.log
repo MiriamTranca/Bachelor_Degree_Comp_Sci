@@ -1,0 +1,10 @@
+﻿  services.c
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\services.c(36,25): warning C4133: 'function': incompatible types - from 'Estate *' to 'EstateRepository *'
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\services.c(55,22): warning C4133: 'function': incompatible types - from 'Estate *' to 'EstateRepository *'
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\services.c(95,9): warning C4013: 'printf' undefined; assuming extern returning int
+  ui.c
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\ui.c(78,21): warning C4013: 'strcmp' undefined; assuming extern returning int
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\ui.c(113,13): warning C4013: 'strcpy' undefined; assuming extern returning int
+C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\Real Estate Agency\ui.c(60,34): warning C4101: 'addressSubstring': unreferenced local variable
+  Generating Code...
+  Real Estate Agency.vcxproj -> C:\Users\tranc\OneDrive\Documents\GitHub\a2-MiriamTranca-1\Real Estate Agency\x64\Debug\Real Estate Agency.exe
