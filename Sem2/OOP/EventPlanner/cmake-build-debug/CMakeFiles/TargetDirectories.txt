@@ -1,0 +1,5 @@
+C:/Users/tranc/CLionProjects/EventPlanner/cmake-build-debug/CMakeFiles/EventPlanner.dir
+C:/Users/tranc/CLionProjects/EventPlanner/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/tranc/CLionProjects/EventPlanner/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/tranc/CLionProjects/EventPlanner/cmake-build-debug/CMakeFiles/EventPlanner_autogen_timestamp_deps.dir
+C:/Users/tranc/CLionProjects/EventPlanner/cmake-build-debug/CMakeFiles/EventPlanner_autogen.dir
