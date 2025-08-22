@@ -1,0 +1,8 @@
+desc1,accepted,wr1,1
+desc2,proposed,wr2,1
+desc3,proposed,wr1,3
+desc4,accepted,wr4,2
+d,proposed,wr3,1
+d1,accepted,wr4,2
+ddd,proposed,wr4,1
+1,proposed,wr4,1

@@ -1,0 +1,4 @@
+wr1,Assistant
+wr2,Junior
+wr3,Senior
+wr4,Junior
