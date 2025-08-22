@@ -1,0 +1,176 @@
+2023 RESTANTA OS
+
+1.Give a regular expression that matches any even-length sequence of lower-case words separated by spaces, if for each word its length and its position in the sequence are either both odd or both even. Ex: the 5th word has to be of odd length and the 16th has to be of even length.
+
+solution:
+
+grep -E '^(([a-z][a-z])*[a-z] ([a-z][a-z])*)+$'
+
+2.When would you load into memory the pages of a process that is just starting?
+
+solution:
+
+I would load the pages only they are needed, using demand paging. This is making the initial load time be reduced and less memory used.
+
+3.Considering that the size of a block is B and the size of an address isA, how many data blocks are addressed by the double indirect addressing of an i-node?
+
+solution: (B/A)^2
+
+4.What state transition will a process undergo when it calls sem_wait and under what conditions? Justify your answer.
+
+solution: When a process calls sem_wait(), it may transition from the Running state to the Blocked (or Waiting) state if the semaphore value is 0 or negative. This indicates that the resource is not currently available. The process will remain blocked until another process calls sem_post() and increments the semaphore, signaling that the resource is now available. If the semaphore value was greater than 0, sem_wait() simply decrements it, and the process continues running without blocking.
+
+5.Give an example of distinct values greater than 0 for T, N1, N2 and N3 for which the program below finishes execution.
+
+pthread_barrier_t b1, b2;
+
+void* f1(void* a)
+{
+	pthread_barrier_wait(&b1);
+	return NULL;
+}
+
+void* f2(void* a)
+{
+	pthread_barrier_wait(&b2);
+	return NULL;
+}
+
+int main()
+{
+	int i;
+	pthread_t t[T][2];
+
+	pthread_barrier_init(&b1, NULL, N1);
+	pthread_barrier_init(&b2, NULL, N2);
+	for (i = 0; i < T; i++)
+	{
+		pthread_create(&t[i][0], NULL, f1, NULL);
+		pthread_create(&t[i][1], NULL, f2, NULL);
+	}	
+	for (i = 0; i < T; i++)
+	{
+		pthread_join(t[i][0], NULL);
+		pthread_join(t[i][1], NULL);
+	}
+	pthread_barrier_destroy(&b1);
+	pthread_barrier_destroy(&b2);
+	return NULL;
+}
+
+solution:
+One valid set of values is: T = 3, N1 = 3, N2 = 3, N3 = any positive integer (e.g., 3).
+
+N1 must equal T, because exactly T threads will wait on b1.
+
+N2 must also equal T, because exactly T threads will wait on b2.
+
+If N1 or N2 are greater than T, the barrier will never release — the program will deadlock.
+
+N3 is unused, so any value > 0 is acceptable but irrelevant.
+
+6.What could happen if function f were executed by several simultaneous threads? Why?
+
+pthread_mutex_t m[2];
+void* f(void* p)
+{
+	int id = (int) p;
+	pthread_mutex_t* first = &m[id % 2];
+	pthread_mutex_t* second = &m[(id + 1) % 2];
+
+	pthread_mutex_lock(first);
+	pthread_mutex_lock(second);
+	...
+	pthread_mutex_unlock(second);
+	pthread_mutex_unlock(first);
+}
+
+solution: This execution will most propably give a deadlock, because of the circular calling of the mutexes. There exists the possibility that a thread will keep in wait a resource that is needed in another thread and then the execution will be blocked.
+
+7.What can you do as a software developer to prevent deadlocks?
+
+solution:
+Deadlocks arise when four conditions are met: mutual exclusion, hold and wait, no preemption, and circular wait. By breaking any one of these conditions—especially circular wait (via lock ordering) or hold-and-wait (by avoiding nested locks). So as a programmer you should avoid nested locks and ensure proper ordering, minimize the lock scope and avoid holding multiple locks at once.
+
+8.What will be the effect of replacing calls to pthread_mutex_lock with calls to sem_post?
+
+solution: Replacing calls to pthread_mutex_lock with sem_post does not make sense on its own because:
+
+pthread_mutex_lock locks a mutex to gain exclusive access to a critical section.
+
+sem_post increments a semaphore, signaling that a resource has been released or is available.
+
+If you replace pthread_mutex_lock (which acquires a lock) with sem_post (which releases or signals), the program's synchronization logic will break.
+
+
+9.Give three function calls that ensure mutual exclusion.
+
+solution:  pthread_mutex_lock() , sem_wait(), pthread_rwlock_lock()
+
+10. What is a "critical section"?
+
+solution: 
+The critical section is the part where shared data between threads or processes can be changed. Usually the critical section is the part between locking and unlocking a mutex, making the shared data available for one thread in such a way it can be changed and the change to be the same for all the threads or processes.
+
+11. When would you use execv instead of execl?
+
+solution: 
+When i want to pass the command-line arguments to the new program as an array of strings rather thans as a list of individual arguments 
+
+
+12. How many FIFOs can a process open for reading if the FIFOs are and will ever be used by other processes only for writing?
+
+solution: 
+The process can open as many FIFOs for reading as system resources allow, given that other processes open those FIFOs only for writing. But at least one.
+
+13.Explain why the file descriptor returned by popen must be closed with pclose instead of fclose.
+
+solution: because with popen you start a new process and when using pclose you close the stream, like fopen does but you also wait for the child process created by popen() to terminate and return its exit status.
+
+14. What will the fragment below print? Justify your answer.
+
+execl("expr", "expr", "1", "+", "1", NULL);
+execlp("echo", "echo", "3", NULL);
+printf("4\n");
+
+solution:
+If the function execl is successful then only 2 will be printed, because any other code after that wont be executed. The current process is replaced by execl with a new process image. If fails then will print 3, if fails than 4.
+
+15.Give three ways of finding the size of a file on the linux command line.
+
+solution:
+ls -l filename
+wc -c < filename
+stat -c %s filename
+
+16.Draw the hierarchy of processes created by the code below, including the parent process.
+
+for (i = 0; i < 3; i++)
+{
+	if (fork() > 0)
+	{
+		wait(0);
+		wait(0);
+		exit(0);
+	}
+}
+
+solution:
+p->c1
+c1->c2
+c2->c3
+
+17.Write two SED commands that display a file's lines deleting the first non-empty sequence of lower-case letters.
+
+solution: sed -E's/[a-z]+//'
+sed -E's/^([^a-z]*)([a-z]+)([^a-z]*)$/\1\3/'
+
+
+18. Write an AWK command that displays the sum of all the numbers in a text file whose lines consist of sequences of digits separated by spaces.
+
+solution:
+awk '{ for (i = 1; i <= NF; i++) sum += $i } END { print sum }' filename
+
+19. Give three GREP commands that display the lines of a file which consist exclusively of a non-empty sequence of alternating leters and digits (ex: a0g or 1r5m)
+
+solution: grep -E '^[0-9]?([a-zA-Z][0-9])+$' filename

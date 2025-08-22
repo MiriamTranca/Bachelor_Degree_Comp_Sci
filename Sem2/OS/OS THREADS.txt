@@ -1,0 +1,157 @@
+OS THREADS: 
+
+ - for thread : #include <pthread.h>
+		pthread_t 
+		pthread_create 
+		pthread_join(to wait for them )
+
+ - for mutex : 	pthread_mutex_t (GLOBAL)
+		pthraed_mutex_init(&mutex, NULL)
+		pthread_mutex_destroy(&murex)
+		
+		in threads pthread_mutex_lock and unlock(&m)
+
+ - passing parameters in threads : 
+		typedef struct 
+		{
+			int a, b;
+		} dataThreads;
+		
+		in threads : 
+			void* name(void* data)
+			{
+				dataThreads *dataInThread = (dataThreads*)data;
+				here dataInThread->a
+				
+				THEN FREE free(dataInThread)
+			}
+
+		in main :
+			dataThreads data[100];
+			THEN IN pthread_create(&tid[i],NULL,name,$data[i])
+
+ - to give from thread :
+		in threads : 
+			of type void*
+			int* result = malloc(sizeof(int));
+			*result = res;
+			return result;
+
+		in main : 
+			same type
+			int* sum;
+			pthread_join(tid[i],(void**)&sum);
+
+			free(sum); //for the malloc 
+ - read from file:
+		FILE *fptr;                                                     		fptr = fopen("matrice.txt","r");                                
+		if(fptr == NULL)					
+		{                                                       
+			printf("Couldn't open file");                                   			return 1;                                               
+		}
+
+		while(fgets(data[num_rows].line, 100, fptr))	
+
+ - conditional variables :	
+		//initalize mutex, condition and when to stop
+		int done = 0;
+		pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER
+		pthread_cond_t c = PTHREAD_COND_INITIALIZER
+
+		void thr_exit(){
+			pthread_mutex_lock(&m);
+			done =1;
+			pthread_cond_signal(&c);
+			pthread_mutex_unlock(&m);
+		}
+	
+		void* thread (in here thr_exit(); then return NULL)
+
+		void thr_join() {
+			pthread_mutex_lock(&m);
+			while(done == 0)
+				pthread_cond_wait(&c,&m);
+			pthread_mutex_unlock(&m);
+		in main : 
+		pthread_create
+		then thr_join();
+		pthread_cond_destory(&cond)
+		pthread_mutex_destroy(&m)
+
+ - RW lock : 
+		//more read, one just writes 
+		pthread_rwlock_t lock;
+
+		void* writer(void* idp) {
+			while(1){
+				pthread_rwlock_wrlock(&lock);
+				//write/ edit 
+				pthread_rwlock_unlock(&lock);
+			}
+			return NULL;
+		}
+		
+		
+		void* reader(void* idp) {
+			while(1){
+				pthread_rwlock_rdlock(&lock);
+				// print operations
+				pthread_rwlock_unlock(&lock);
+			}
+			return NULL;
+		}
+
+		int main(){
+			pthread_rwlock_init(&lock, NULL)
+
+			pthread_rwlock_destroy(&lock)
+		}
+
+- Semaphores : 
+		//wait for available space 
+		#include <semaphore.h>
+		
+		sem_t semaphores;
+
+		void* name(void* arg) {
+			sem_wait(&semaphores) //get a semaphore, wait if all busy
+			do wait you have to do 
+			usually sleep(1,2,3) here 
+
+			sem_post(&semaphores) //release them
+			return NULL
+		}	
+		in main :
+			sem_init(&semaphores, 0, number of semaphores needed)
+			sem_destroy(&semaphores)
+
+ - Barriers : 
+		//wait for a number of threads or for all 
+		pthread_barrier_t barrier_group;
+		void* name(void* arg ){
+			pthread_barrier_wait(&barrier_group)
+			//wait for all needed
+			return NULL;
+		}
+		
+		in main :
+		pthread_barrier_init(&barrier_group, NULL, number of threads we want);
+		pthread_barrier_destroy(&barrier_group)
+
+- Pipe :
+
+	1. int pipefd[2];
+	2. pipe(pipefd);           // Create pipe
+	3. fork();                 // Create child
+	4. Parent: close(pipefd[0]), write to pipefd[1]
+	5. Child:  close(pipefd[1]), read from pipefd[0]
+	6. close() both ends when done 
+
+ - FIFO : 
+	1. mkfifo(filename, permissions);  // Create FIFO in filesystem
+	2. open(filename, O_RDONLY/O_WRONLY);  // Open for read/write
+	3. read()/write() normally
+	4. close()
+	5. unlink(filename);
+
+

@@ -1,0 +1,190 @@
+27 june 2019 OS
+
+1. unix numar binar cu 5 sau mai multe cifre, multiplu de 4
+grep -E '\<[01]{3,}00\>' a.txt
+
+
+2. unix, inverseaza toate perechile de cifra impara urmata de vocala
+sed -E 's/([13579])([aeiou])/\2\1/gi' a.txt
+
+
+3. unix, toate scorurile de fotbal UNICE, care apar in a.txt. Numarul de goluri poate avea max 2 cifre 
+grep -E '\<[0-9]{1,2}-[0-9]{1,2}\>' a.txt | sort | uniq -u 
+
+
+4. afisati numarul de procese ale fiecarui utilizator activ din sistem 
+ps -ef | awk '{print $1}' | sort | uniq -c 
+
+
+5. scrieti un shell script unix care calculeaza media de fisiere cu extensia .txt per director din directorul curent si toar e subdirectoarele lui 
+#!/bin/bash
+
+for dir in $(find -type d); do
+	total_dir=$((total_dir + 1))
+done 
+for file in $(find -type f -name "*.txt"); do
+	total_files=$((total_files + 1))
+done
+echo "Media : $total_files/$total_dir"
+
+
+6. Cate procese, excluzand parintele 
+if(fork() != fork()) {
+	fork();
+}
+ primul fork() face c1
+ al doilea fork() face c2
+al treilea fork() face c3
+
+la c1 al doile fork() face c4
+	al treilea fork() face c5
+la c2 al treilea fork() face c6 
+deci 6 procese 
+
+
+7. int p=0;
+for(i=0;i<3;i++) {
+	if(p==0)
+		p=fork();
+	else 
+		wait(0);
+}
+
+P0 
+|
+C1
+|
+C2
+|
+C3
+
+
+8. what will be written in the console after this code
+char* s[3] = {"A","B", "C"};
+for (i=0;i<3;i++){
+	if(fork()!=0){
+		execl("/bin/echo","/bin/echo",s[i],NULL);
+	}
+}
+
+if the execl function is succeeding then only A will be written, because execl will immediately replace the process with another one and the for wont continue, but in the other child processes B and C will be written if the excel isn't succeeding then nothing will be written.
+So 
+A
+B
+C
+
+
+9. what is the "write" in a PIPE do if we still have space , what is there isn't sufficient for how much we want to write?
+
+If the PIPE has space, but not enough, in blocking mode (the default one) will write what it can then block the process until space becomes available to write the remaining data, only returning after all data is written. In non-blocking mode, it will write what it can, resturn the number of bytes actually written, allowing the process to handle partial writing.
+
+If we still have space, the PIPE will write and return the number of bytes used for writing, it will write all the data in one atomic operation.
+
+
+10. what will be typed if no other process is opening the fifo. 
+
+int w,n,k=10;
+r = open("abc", O_WRONLY);
+n = write(r,&k,sizeof(int));
+printf("%d\n",n);
+
+Dacă niciun alt proces nu deschide FIFO-ul pentru citire, nu se va afișa nimic. FIFO-ul necesită atât un reader cât și un writer pentru a funcționa. Procesul va rămâne blocat la apelul open("abc", O_WRONLY) și nu va ajunge niciodată la instrucțiunile write() sau printf(). Prin urmare, nu se va afișa nimic în consolă
+
+
+11. What happens to a zombie process if the parent is terminated? 
+
+If the parent is terminated, the zombie is reparented by the init process(PID A), which periodically calls 'wait(0)' to clean up the zombie processes, so the process would be cleaned up. This whole thing is not very good an efficient because it occupies pids got no reason.
+
+
+12. what should be added if the function f is executed sim by 1o threads. 
+
+int n=0;
+void * f(void *p) {
+
+	n++;
+
+	return NULL;
+} 
+
+we should add a mutex to protect the shared data from being simultaieously accessed by more than one thread, which could lead to incorrect results, because the given code is a race condition. and the increment of n, which is a critical variable, is not atomic, so 
+the program should be like this 
+
+int n=0;
+pthread_mutex_t m;
+void * f(void *p) {
+	pthread_mutex_lock(&m);
+	n++;
+	pthread_mutex_unlock(&m);
+	return NULL;
+} 
+
+
+13. plan the execution of the next jobs in such a way the sum of intarzieri sa fie minima: a/22/27,b/2/15,c/4/5
+
+ c - 0 - 4 - 5
+ b - 4 - 6 - 15 
+ a - 6 - 22 - 28
+
+being late only by 1
+
+
+14. give an advantage and disadvantage of set-associative chache over direct ones 
+One advantage is that it is reduced conflict misses due to flexibility within each set and one disadvantage is  the increased complexity and cost due to multiple comparator and more complex management.
+
+
+15. which is the most prioritar catecry of pages in memory from wich the NRU would choose a victim page? 
+Based of the NRU polices, the pages are categorized in 4 classes. Class 0 is for the pages which are not referenced and not modified. Class 1 for those who are not referenced but modified. Class 2 for those referenced and not modified. Class 3 for those referenced and modified. The category from which the victim page would be chosen in the class 0.
+
+16. what would you add in this code fragment so the program would type "1 3 3"? write the line codes and  the between what lines of code you would add them . you cannot modify the given code, just add
+int n=0;
+pthread_mutex_t m[3];
+void * f(void * p) {
+	int id = (int) p;
+	pthread_mutex_lock(&m[id]);
+	n+=id;
+	printf("%d ",n);
+	pthread_mutex_unlock(&m[(id+1) % 3]);
+	return NULL;
+}
+int main(){
+	int i;
+	pthread_t t[3];
+	for(i=0;i<3;i++){
+		pthread_mutex_init(&m[i],NULL);
+	}
+	for(i=0;i<3;i++){
+		pthread_create(&t[i],NULL, f, (void*) i);
+	}
+	for(i=0;i<3;i++){
+		pthread_join(&t[i],NULL);
+	}
+	for(i=0;i<3;i++){
+		pthread_mutex_destroy(&m[i]);
+	}
+	return 0;
+}
+between line 13 and 14
+pthread_mutex_lock(&m[1]);
+pthread_mutex_lock(&m[2]);
+
+
+17. being given 2 set_associative caches. One with 2 sets of 4 pages and one with 4 sets of 2 pages, which would give bettwr results for the given sequence of page cereri: 14,23,1,16,1,23,16,14 . Justify ansewar.
+Answer:
+the second one because it has more sets 
+
+
+18. How many blocks of data can be reffered to through triple simple indirection if bloc dim B amd address dim A 
+A^3*B
+
+
+19. What happend to a hard link when the file it points to is deleted.
+Great question! Unlike a symbolic link, a hard link is directly tied to the data blocks on the disk. When a file is deleted, its associated hard link does not disappear—instead, it remains fully functional.
+A hard link acts as an additional reference to the same file data on the disk.
+
+A file is only truly removed from the system once all hard links to it are deleted.
+
+If other hard links exist, the data remains accessible through them.
+However, once all hard links are gone, the file’s inode reference is erased, and the system marks its space as free for reuse. So, unless it was the last hard link, deleting a file won’t actually remove its content!
+
+20. Deadlock when you cannot modifiy the concurrency of resources.
+Deadlocks arise when four conditions are met: mutual exclusion, hold and wait, no preemption, and circular wait. By breaking any one of these conditions—especially circular wait (via lock ordering) or hold-and-wait (by avoiding nested locks). So as a programmer you should avoid nested locks and ensure proper ordering, minimize the lock scope and avoid holding multiple locks at once.

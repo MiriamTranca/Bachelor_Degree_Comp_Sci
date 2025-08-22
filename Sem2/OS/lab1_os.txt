@@ -1,0 +1,1313 @@
+
+1  touch a.txt
+    2  ls
+    3  mkdir mydir
+    4  ls
+    5  ls -l
+    6  chmod +w a.txt
+    7  ls
+    8  ls -l
+    9  chmod -w a.txt
+   10  ls -l
+   11  chmod +w a.txt
+   12  ls -l
+   13  chmod +x a.txt
+   14  ls -l
+   15  man ls
+   16  ls -l -a
+   17  cd mydir
+   18  pwd
+   19  cd ..
+   20  echo Hello
+   21  echo $HOME
+   22  echo ~
+   23  cd ~/mydir
+   24  cd ..
+   25  cp a.txt copie.txt
+   26  ls
+   27  mv copie.txt mydir
+   28  ls
+   29  cd mydir
+   30  ls
+   31  mv copie.txt new.txt
+   32  ls
+   33  rm new.txt
+   34  ls
+   35  who
+   36  history
+   37  last
+   38  last | grep "andrei"
+   39  last | grep "Tue" | sort
+   40  last | grep "Tue" | sort -r
+   41  last | grep "Tue" | sort -r | head -10
+   42  last | grep "Tue" | sort -r | tail -5
+   43  ps
+   44  sort
+   45  ps
+   46  kill -9 14860
+   47  ps
+   48  pstree
+   49  top
+   50  date
+   51  cal
+   52  last > 26feblogs.txt
+   53  cat 26feblogs.txt
+   54  ls
+   55  cd ..
+   56  rmdir mydir
+   57  rmdir mydir 2> error.txt
+   58  cat error.txt
+   59  vim hw.c
+   60  qcc -Wall -o hw.out hw.c
+   61  ./ hw.out
+   62  ./hw.out
+   63  ls
+   64  gcc -Wall -o hw.out hw.c
+   65  vim hw.c
+   66  gcc -Wall -o hw.out hw.c
+   67  ./hw.out
+   68  vim hw.c
+   69  gcc -Wall -o hw.out hw.c
+   70  vim hw.c
+   71  nano hw.c
+   72  history
+ssh username 
+hidden files with dot
+
+dot - the current dir
+dot dot - the previous directory
+
+$- takes the value of a variable
+$HOME - takes to your home dir
+~ - pathway to home, the same as $HOME
+
+
+
+
+steps to open
+
+input the host
+put the username
+put the password by click right and enter
+
+relative path 
+absolute path with slash
+
+if you want to repeat a command, use the arrows
+
+touch - creates a simple file
+cp - copies file
+man - manual
+mv - moves a file to another directory and it can rename a file
+rm - remove, cannot be undid
+rmdir - can delete a dir only if it is empty
+
+/ - the root of the file system
+
+DON'T rm -fr / . it deletes all the files that can be deleted from the file system
+
+history - shows all the commands used
+
+| - a pipe, separates commands
+
+ps - the programs running on the computer
+sort - sort - either provide a file or have it 
+^C (control C), shuts down the process
+
+kill -9 id of the process - kills a process
+
+
+pstree - 
+
+
+Standard input output files
+0 - standard input
+1 - standard output
+2 - standard error
+
+> - redirect the output to a file
+cat - prints the contents of a file
+
+control S - blocks the command
+control Q  - unblocks it
+
+gcc -Wall -o hw.out hello.c
+./hw.out
+
+gcc - c compiler
+vim - editor
+	enters / creates a file where we can write code
+	in the file, to write we have to put i
+	to get out of writing mode, use escape, :wq
+	e si un joc ca sa invatam vim
+nano - alt editor
+
+
+
+
+
+
+test 1 : vom primi un program in C, care are erori si sa-l corectam
+	pregatire: testam ce erori putem avea
+
+
+LAB 2:
+
+
+
+
+
+
+
+
+man printf 
+man 3 printf ;section 3 of the manual
+whatis printf 
+apropos printf 
+malloc -> used for dynamic allocation , returns void pointer
+heap 
+data (local) | heap->    then here 30 sizes of int   | stack <-
+if we have static : array[30], in data 
+if we have dynamic : int *array;
+			...
+			array = (int*)malloc(30*sizeof(int));	
+			we can use free(array);
+casting is changing the data type for example here(int*) we make the pointer an int  
+
+number of calls of malloc needs number of calls from free
+
+
+we can see the manual for c commands
+
+man printf
+man 3 printf - goes directly to section 3
+whatis printf
+apropos printf
+
+malloc - dynamic memory allocation, return a void pointer
+casting  = 
+heap - biggest section of the memory
+
+how to connect from the 
+
+stdio - standard input output
+
+int* array;  -> malloc(n*sizeof(int*))
+int** mat;
+
+for the 4 dimension matrix, start first with the 2nd dimension matrix, the 3rd dimension matrix
+	- this is for getting used to pointers
+for debugging put errors/bugs into the code and see what happens
+
+-the test you get a code full of bugs, debug it
+
+segmentation fault - try to access a memory location you have no access to 
+
+1. No errors and warnings
+2. No memory leaks
+3. No logical errors
+
+    1  vim prog1
+    2  vim prog.c
+    3  gcc -Wall -o prog.out prog.c
+    4  vim prog.c
+    5  gcc -Wall -o prog.out prog.c
+    6  vim prog.c
+    7  gcc -Wall -o prog.out prog.c
+    8  ./prog.out
+    9  valgrind ./prog.out
+   10  vim prog.c
+   11  gcc -Wall -o prog.out prog.c
+   12  valgrind ./prog.out
+   13  vim prog.c
+   14  gcc -Wall -o prog.out prog.c
+   15  valgrind ./prog.out
+   16  vim prog.c
+   17  vim arguments.c
+   18  gcc -Wall -o arguments.out arguments.c
+   19  vim arguments.c
+   20  gcc -Wall -o arguments.out arguments.c
+   21  ./arguments.out
+   22  ./arguments.out 1 2 3 4 5
+   23  gcc -Wall -o arguments.out arguments.c
+   24  vim arguments.c
+   25  gcc -Wall -o arguments.out arguments.c
+   26  ./arguments.out 1 2 3 4 5
+   27  ./arguments.out 1 2 3 4 te 5
+   28  vim readfile.c
+   29  touch text.txt
+   30  gcc -Wall -o readfile.out readfile.c
+   31  vim readfile.c
+   32  vim text.txt
+   33  gcc -Wall -o readfile.out readfile.c
+   34  ./readfile.out
+   35  valgrind ./readfile.out
+   36  vim readfile.c
+   37  gcc -Wall -o readfile.out readfile.c
+   38  valgrind ./readfile.out
+   39  vim segmentationfault.c
+   40  gcc -Wall -o segmentationfault.out segmentationfault.c
+   41  vim segmentationfault.c
+   42  gcc -Wall -o segmentationfault.out segmentationfault.c
+   43  vim segmentationfault.c
+   44  gcc -Wall -o segmentationfault.out segmentationfault.c
+   45  vim segmentationfault.c
+   46  history
+
+
+
+
+--------------------------
+
+root@DESKTOP-0BBL2E8:~# ssh yz387@172.30.240.9
+yz387@172.30.240.9's password:
+
+root@DESKTOP-0BBL2E8:~# ssh yz387@172.30.240.9 -p 22
+yz387@172.30.240.9's password:
+Permission denied, please try again.
+yz387@172.30.240.9's password:
+
+root@DESKTOP-0BBL2E8:~# ssh yz387@172.30.240.9 -p 22
+yz387@172.30.240.9's password:
+Last failed login: Wed Mar  5 08:42:45 EET 2025 from 172.30.246.235 on ssh:notty
+There were 6 failed login attempts since the last successful login.
+-bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8): No such file or directory
+-bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog1
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o prog.out prog.c
+prog.c: In function 'main':
+prog.c:7:11: warning: assignment to 'char **' from incompatible pointer type 'char *' [-Wincompatible-pointer-types]
+    7 |         c = (char*) malloc(2*sizeof(char));
+      |           ^
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o prog.out prog.c
+prog.c: In function 'main':
+prog.c:7:11: warning: assignment to 'char **' from incompatible pointer type 'char *' [-Wincompatible-pointer-types]
+    7 |         c = (char*) malloc(3*sizeof(char));
+      |           ^
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o prog.out prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./prog.out
+hello/home/xm/exam/os/practice/violeta.ungureanu/yz387> valgrind ./prog.out
+==141099== Memcheck, a memory error detector
+==141099== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==141099== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==141099== Command: ./prog.out
+==141099==
+==141099== Invalid write of size 8
+==141099==    at 0x401157: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==  Address 0x4a6c040 is 0 bytes inside a block of size 3 alloc'd
+==141099==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141099==    by 0x40114E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+==141099== Invalid write of size 8
+==141099==    at 0x401166: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==  Address 0x4a6c048 is 5 bytes after a block of size 3 alloc'd
+==141099==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141099==    by 0x40114E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+==141099== Invalid write of size 8
+==141099==    at 0x401175: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==  Address 0x4a6c050 is 13 bytes after a block of size 3 alloc'd
+==141099==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141099==    by 0x40114E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+==141099== Use of uninitialised value of size 8
+==141099==    at 0x484DE76: strlen (vg_replace_strmem.c:505)
+==141099==    by 0x48C1127: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141099==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141099==    by 0x401194: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+==141099== Use of uninitialised value of size 8
+==141099==    at 0x484DE84: strlen (vg_replace_strmem.c:505)
+==141099==    by 0x48C1127: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141099==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141099==    by 0x401194: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+==141099== Use of uninitialised value of size 8
+==141099==    at 0x48E49C3: _IO_default_xsputn (in /usr/lib64/libc.so.6)
+==141099==    by 0x48E2D4A: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc.so.6)
+==141099==    by 0x48C0E72: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141099==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141099==    by 0x401194: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141099==
+hello==141099==
+==141099== HEAP SUMMARY:
+==141099==     in use at exit: 3 bytes in 1 blocks
+==141099==   total heap usage: 2 allocs, 1 frees, 1,027 bytes allocated
+==141099==
+==141099== LEAK SUMMARY:
+==141099==    definitely lost: 3 bytes in 1 blocks
+==141099==    indirectly lost: 0 bytes in 0 blocks
+==141099==      possibly lost: 0 bytes in 0 blocks
+==141099==    still reachable: 0 bytes in 0 blocks
+==141099==         suppressed: 0 bytes in 0 blocks
+==141099== Rerun with --leak-check=full to see details of leaked memory
+==141099==
+==141099== Use --track-origins=yes to see where uninitialised values come from
+==141099== For lists of detected and suppressed errors, rerun with: -s
+==141099== ERROR SUMMARY: 10 errors from 6 contexts (suppressed: 0 from 0)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o prog.out prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> valgrind ./prog.out
+==141509== Memcheck, a memory error detector
+==141509== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==141509== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==141509== Command: ./prog.out
+==141509==
+==141509== Invalid write of size 8
+==141509==    at 0x401167: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==  Address 0x4a6c040 is 0 bytes inside a block of size 3 alloc'd
+==141509==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141509==    by 0x40115E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+==141509== Invalid write of size 8
+==141509==    at 0x401176: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==  Address 0x4a6c048 is 5 bytes after a block of size 3 alloc'd
+==141509==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141509==    by 0x40115E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+==141509== Invalid write of size 8
+==141509==    at 0x401185: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==  Address 0x4a6c050 is 13 bytes after a block of size 3 alloc'd
+==141509==    at 0x484482F: malloc (vg_replace_malloc.c:446)
+==141509==    by 0x40115E: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+==141509== Use of uninitialised value of size 8
+==141509==    at 0x484DE76: strlen (vg_replace_strmem.c:505)
+==141509==    by 0x48C1127: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141509==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141509==    by 0x4011A4: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+==141509== Use of uninitialised value of size 8
+==141509==    at 0x484DE84: strlen (vg_replace_strmem.c:505)
+==141509==    by 0x48C1127: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141509==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141509==    by 0x4011A4: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+==141509== Use of uninitialised value of size 8
+==141509==    at 0x48E49C3: _IO_default_xsputn (in /usr/lib64/libc.so.6)
+==141509==    by 0x48E2D4A: _IO_file_xsputn@@GLIBC_2.2.5 (in /usr/lib64/libc.so.6)
+==141509==    by 0x48C0E72: __vfprintf_internal (in /usr/lib64/libc.so.6)
+==141509==    by 0x48B552E: printf (in /usr/lib64/libc.so.6)
+==141509==    by 0x4011A4: main (in /home/xm/exam/os/practice/violeta.ungureanu/yz387/prog.out)
+==141509==
+hello==141509==
+==141509== HEAP SUMMARY:
+==141509==     in use at exit: 0 bytes in 0 blocks
+==141509==   total heap usage: 2 allocs, 2 frees, 1,027 bytes allocated
+==141509==
+==141509== All heap blocks were freed -- no leaks are possible
+==141509==
+==141509== Use --track-origins=yes to see where uninitialised values come from
+==141509== For lists of detected and suppressed errors, rerun with: -s
+==141509== ERROR SUMMARY: 10 errors from 6 contexts (suppressed: 0 from 0)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o prog.out prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> valgrind ./prog.out
+==141866== Memcheck, a memory error detector
+==141866== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==141866== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==141866== Command: ./prog.out
+==141866==
+hello==141866==
+==141866== HEAP SUMMARY:
+==141866==     in use at exit: 0 bytes in 0 blocks
+==141866==   total heap usage: 2 allocs, 2 frees, 1,048 bytes allocated
+==141866==
+==141866== All heap blocks were freed -- no leaks are possible
+==141866==
+==141866== For lists of detected and suppressed errors, rerun with: -s
+==141866== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o arguments.out arguments.c
+arguments.c: In function 'main':
+arguments.c:4:9: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+    4 |         printf("we have %d arguments", argc);
+      |         ^~~~~~
+arguments.c:1:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+  +++ |+#include <stdio.h>
+    1 | int main(int argc, char** argv)
+arguments.c:4:9: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+    4 |         printf("we have %d arguments", argc);
+      |         ^~~~~~
+arguments.c:4:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o arguments.out arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./arguments.out
+we have 1 arguments/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./arguments.out 1 2 3 4 5
+we have 6 argumentsargv[1]=1
+argv[2]=2
+argv[3]=3
+argv[4]=4
+argv[5]=5
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o arguments.out arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o arguments.out arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./arguments.out 1 2 3 4 5
+we have 6 arguments
+argv[1]=1
+argv[2]=2
+argv[3]=3
+argv[4]=4
+argv[5]=5
+The sum of the arguments is 15
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./arguments.out 1 2 3 4 te 5
+we have 7 arguments
+argv[1]=1
+argv[2]=2
+argv[3]=3
+argv[4]=4
+argv[5]=te
+argv[6]=5
+The sum of the arguments is 15
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> touch text.txt
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o readfile.out readfile.c
+readfile.c: In function 'main':
+readfile.c:10:17: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+   10 |                 exit(0);}
+      |                 ^~~~
+readfile.c:2:1: note: include '<stdlib.h>' or provide a declaration of 'exit'
+    1 | #include <stdio.h>
+  +++ |+#include <stdlib.h>
+    2 |
+readfile.c:10:17: warning: incompatible implicit declaration of built-in function 'exit' [-Wbuiltin-declaration-mismatch]
+   10 |                 exit(0);}
+      |                 ^~~~
+readfile.c:10:17: note: include '<stdlib.h>' or provide a declaration of 'exit'
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim text.txt
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o readfile.out readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387>
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> ./readfile.out
+
+hello
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> valgrind ./readfile.out
+==146972== Memcheck, a memory error detector
+==146972== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==146972== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==146972== Command: ./readfile.out
+==146972==
+
+hello
+==146972==
+==146972== HEAP SUMMARY:
+==146972==     in use at exit: 472 bytes in 1 blocks
+==146972==   total heap usage: 3 allocs, 2 frees, 5,592 bytes allocated
+==146972==
+==146972== LEAK SUMMARY:
+==146972==    definitely lost: 0 bytes in 0 blocks
+==146972==    indirectly lost: 0 bytes in 0 blocks
+==146972==      possibly lost: 0 bytes in 0 blocks
+==146972==    still reachable: 472 bytes in 1 blocks
+==146972==         suppressed: 0 bytes in 0 blocks
+==146972== Rerun with --leak-check=full to see details of leaked memory
+==146972==
+==146972== For lists of detected and suppressed errors, rerun with: -s
+==146972== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o readfile.out readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> valgrind ./readfile.out
+==147121== Memcheck, a memory error detector
+==147121== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==147121== Using Valgrind-3.23.0 and LibVEX; rerun with -h for copyright info
+==147121== Command: ./readfile.out
+==147121==
+
+hello
+==147121==
+==147121== HEAP SUMMARY:
+==147121==     in use at exit: 0 bytes in 0 blocks
+==147121==   total heap usage: 3 allocs, 3 frees, 5,592 bytes allocated
+==147121==
+==147121== All heap blocks were freed -- no leaks are possible
+==147121==
+==147121== For lists of detected and suppressed errors, rerun with: -s
+==147121== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o segmentationfault.out segmentationfault.c
+segmentationfault.c: In function 'main':
+segmentationfault.c:7:25: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Wformat=]
+    7 |                 scanf("%d", v[i]);
+      |                        ~^   ~~~~
+      |                         |    |
+      |                         |    int
+      |                         int *
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o segmentationfault.out segmentationfault.c
+segmentationfault.c: In function 'main':
+segmentationfault.c:7:25: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Wformat=]
+    7 |                 scanf("%d", v[i]);
+      |                        ~^   ~~~~
+      |                         |    |
+      |                         |    int
+      |                         int *
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> gcc -Wall -o segmentationfault.out segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> history
+    1  vim prog1
+    2  vim prog.c
+    3  gcc -Wall -o prog.out prog.c
+    4  vim prog.c
+    5  gcc -Wall -o prog.out prog.c
+    6  vim prog.c
+    7  gcc -Wall -o prog.out prog.c
+    8  ./prog.out
+    9  valgrind ./prog.out
+   10  vim prog.c
+   11  gcc -Wall -o prog.out prog.c
+   12  valgrind ./prog.out
+   13  vim prog.c
+   14  gcc -Wall -o prog.out prog.c
+   15  valgrind ./prog.out
+   16  vim prog.c
+   17  vim arguments.c
+   18  gcc -Wall -o arguments.out arguments.c
+   19  vim arguments.c
+   20  gcc -Wall -o arguments.out arguments.c
+   21  ./arguments.out
+   22  ./arguments.out 1 2 3 4 5
+   23  gcc -Wall -o arguments.out arguments.c
+   24  vim arguments.c
+   25  gcc -Wall -o arguments.out arguments.c
+   26  ./arguments.out 1 2 3 4 5
+   27  ./arguments.out 1 2 3 4 te 5
+   28  vim readfile.c
+   29  touch text.txt
+   30  gcc -Wall -o readfile.out readfile.c
+   31  vim readfile.c
+   32  vim text.txt
+   33  gcc -Wall -o readfile.out readfile.c
+   34  ./readfile.out
+   35  valgrind ./readfile.out
+   36  vim readfile.c
+   37  gcc -Wall -o readfile.out readfile.c
+   38  valgrind ./readfile.out
+   39  vim segmentationfault.c
+   40  gcc -Wall -o segmentationfault.out segmentationfault.c
+   41  vim segmentationfault.c
+   42  gcc -Wall -o segmentationfault.out segmentationfault.c
+   43  vim segmentationfault.c
+   44  gcc -Wall -o segmentationfault.out segmentationfault.c
+   45  vim segmentationfault.c
+   46  history
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> cut segmentationfault.c
+cut: you must specify a list of bytes, characters, or fields
+Try 'cut --help' for more information.
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim segmentationfault.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim readfile.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim arguments.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387> vim prog.c
+/home/xm/exam/os/practice/violeta.ungureanu/yz387>
+
+cat /etc/passwd -> where we want to filter things
+-E -> extended regular extentions
+grep -> "filtering"
+-v -> all the lines that do not match
+-i -> case insensitive
+{13,} -> minimum 13, not maximum it should be after the comma
+sed -> to do a one to one translation or for the substitute command 
+"y/.../.../" -> translitaretion
+"s/.../.../" -> substitute command
+
+"s/.../(&)/g" -> putting the found ones in () 
+sed also prints the ones that have not been change 
+"s/()()/(\nrofgroup)/g (global, looks in all the parts)"
+sed with onlt /i - edits the file in place and you lose it 
+
+awk -> for splitting and taking parts
+-F: -> making : the separator
+NF -> tells us how many fields
+$NF -> last word
+
+
+ 1  cat /etc/passwd
+    2  cat /etc/passwd | grep -E "912"
+    3  cat /etc/passwd | grep -E "\<[A-Z][ .]-?[A-Z][ .]-?[A-Z]>\"
+
+    4  cat /etc/passwd
+    5  cat /etc/passwd | grep -E -i "\<[a-z]{13,}\>"
+    6  cat /etc/passwd | grep -E "\<[A-Z][ .]-?[A-Z][ .]-?[A-Z]\>"
+    7  cat /etc/passwd | grep -E -i "\<[a-z]{13}\>"
+    8  cat /etc/passwd | grep -E -i "\<[a-z]{12,}\>"
+    9  cat /etc/passwd | sed -E "y/oaesb/04358/"
+   10  cat /etc/passwd | sed -E "s/[aeiou]{3}/(&)/g"
+   11  cat /etc/passwd | sed -E "s/([aeiou]{3})/(\1)/g"
+   12  cat /etc/passwd | sed -E "s/([aeiou])([aeiou])([aeiou])/(\3)(\2)(\3)/g"
+   13  cat /etc/passwd | sed -E "s/([aeiou])([aeiou])([aeiou])/(\3\2\3)/g"
+   14  cat /etc/passwd | sed -E "s/([aeiou])([aeiou])([aeiou])/(\3\2\3)/gi"
+   15  cat /etc/passwd | sed -E "s/211/333/"
+   16  cat /etc/passwd | sed -E "s/211//"
+   17  cat /etc/passwd | sed -E "s/211//g"
+   18  cat /etc/passwd | grep -E "211"
+   19  cat /etc/passwd | grep -E "211" | awk -F: '{print $5}' | awk -F- '{print $3}'
+   20  cat /etc/passwd | grep -E "211" | awk -F: '{print $5}' | awk -F- '{print $3}' | awk -F '{print $nf}'
+   21  cat /etc/passwd | grep -E "211" | awk -F: '{print $5}' | awk -F- '{print $3}' | awk '{print $nf}'
+   22  cat /etc/passwd | grep -E "211" | awk -F: '{print $5}' | awk -F- '{print $3}' | awk '{print $NF}'
+   23  cat /etc/passwd | grep -E "211" | awk -F: '{print $5}' | awk -F- '{print $3}' | awk '$NF ~ /A$/{print $NF}'
+   24  last
+   25  last | awk '{print $1, $NF}'
+   26  last | awk '$NF ~ /([0-9]{2})$/{print $1, $NF}'
+   27  last | awk '$NF ~ /[0-9]{2}\)$/{print $1, $NF}'
+   28  ps -ef
+   29  vim  /etc/passwd
+   30  history
+   31  man ps
+   32  cat ps -ef | awk '{print$1}'
+   33  ps -ef | awk '{print$1}'
+   34  ps -ef | awk '{print$1}' | sort | uniq
+   35  ps -ef | awk '{print$1}' | sort | uniq -c
+   36  ps -ef | awk '{print$1}' | uniq -c
+   37  ps -ef | awk '{print$1}' | sort | uniq -c
+   38  ps -ef | awk '{print$1}' | sort | uniq -c -n -r
+   39  ps -ef | awk '{print$1}' | sort | uniq -c -r
+   40  man -n
+   41  ps -ef | awk '{print$1}' | sort | uniq -c | sort -nr
+   42  ps -ef | awk '{print$1}' | sort | uniq -c | sort -nr | head -5
+   43  ps -ef | awk '{print$1}' | sort | uniq -c | sort -nr | head -10
+   44  ps -ef | awk '{print$1}' | sort | uniq -c | sort -n
+   45  ps -ef | awk '{print$1}' | sort | uniq -c | sort -r
+   46  ps -ef | awk '{print$1}' | grep -E -c "yz910"
+   47  ps -ef | grep -E "yz910"
+   48  ps -ef | grep -E -c "^yz910"
+   49  ps -ef | grep -E "^yz910"
+   50  cat /etc/passwd
+   51  cat last | grep "economica"
+   52  last | grep "economica"
+   53  last
+   54  last | grep "Sun"
+   55  last | grep "Sun" | awk {printf $1}
+   56  last | grep "Sun" | awk '{printf $1}'
+   57  last | grep -E "Sun" | awk '{printf $1}'
+   58  last | grep -E "Sun" | awk '{print $1}'
+   59  last | grep -E "Sun" | awk '{print $1}'| sort | uniq
+   60  vim last.fake
+   61  cat last.fake | grep -E "economica"  | grep -E "Sun" | awk '{print $1}'| sort | uniq
+   62  cat last.fake
+   63  cat last.fake | awk '{print $1, $7}'
+   64  cat last.fake | awk '{print $1, $7}'| head
+   65  cat last.fake | awk '$7 >= 23 {print $1, $7}'
+   66  cat last.fake | awk '$7 >= 23 {print $1, $7}'|sort|uniq
+   67  cat last.fake | awk '$7 >= 23 {print $1, $7}'|sort|uniq|head -5
+   68  cat last.fake | awk '$7 >= 23 {print $1}'|sort|uniq|head -5
+   69  cat last.fake | awk '$7 >= 23 {print $1}'|sort|uniq|head -4
+   70  cat etc/passwd
+   71  /etc/passed
+   72  /etc/passwd
+   73  cat /etc/passwd
+   74  cat /etc/passwd | awk -F:
+   75  cat /etc/passwd | awk -F: '{printf $5}'
+   76  cat /etc/passwd | awk -F: '{prin
+
+   77  history
+
+lecture4:
+
+ vim lect4.c
+  536  gcc -Wall -g -o lect4 lect4.c
+  537  ./lect4
+  538  vim lect4.c
+  539  gcc -Wall -g -o lect4 lect4.c
+  540  vim lect4.c
+  541  gcc -Wall -g -o lect4 lect4.c
+  542  ./lect4
+  543  --fork makes 2 processes
+  544  --./lect4 give before after after, first2 parents, last child
+  545  --the child takes from fork down
+  546  vim lect4.c
+  547  vim lect4_1.c
+  548  man cp
+  549  cp lect4.c lect4_1.c
+  550  vim lect4_1.c
+  551  gcc -Wall -g -o lect4_1 lect4_1.c
+  552  ./lect4_1.c
+  553  ./lect4_1
+
+SHELL PROGRAMMING
+
+- using $ when we want the value
+- $$ the proccess id
+- [] -> test
+- expr $# % 2 -> checking if the number of arguments modulo 2 is 0
+
+
+/home/xm/exam/os/practice/miriam.tranca/yz1280> vim lab5.sh
+/home/xm/exam/os/practice/miriam.tranca/yz1280> ./lab5.sh 1 2 3 4 avb
+Hello yz1280 1 !
+Provide even numbers
+/home/xm/exam/os/practice/miriam.tranca/yz1280> ./lab5.sh 1 2 3 4 avb 5
+Hello yz1280 1 !
+Sum is 3, avg is 1
+Sum is 7, avg is 3
+avb or 5 not valid integer numbers
+/home/xm/exam/os/practice/miriam.tranca/y
+
+lab5.sh
+
+    1 #!/bin/bash
+  2
+  3 message="Hello `whoami` $1 !"
+  4 echo $message
+  5
+  6 if [ `expr $# % 2` -eq 1 ]
+  7 then
+  8     echo Provide even numbers
+  9     exit 1
+ 10 fi
+ 11
+ 12 while [ $# -gt 0 ]; do
+ 13     if [ $1 -eq $1 ] 2>/dev/null &&  echo $2 | grep -E -q "^-?[0-9]+$"
+ 14     then
+ 15         sum=$(expr $1 + $2)  #`expr $1 + $2`
+ 16         avg=$((($1+$2)/2))
+ 17         echo Sum is $sum, avg is $avg
+ 18     else
+ 19         echo $1 or $2 not valid integer numbers
+ 20     fi #closing the if
+ 21     shift 2
+ 22 done
+
+
+curs 5
+- daca facem fork, si avem n proce ce aare un vector, cand facem fork, procesul fiu isi face tabelul sau, iar tabelul fiului nu va ajunge in tabelul tatalui, desi asteapta dupa procesul fiului
+- TOT CE TRIMITE FIUL E UN EXIT CODE
+
+
+- pipe/FIFO/SHM altele, dar nu le facem MSG/SEM
+
+- pipe -> buffer de bytes, dar functioneaza ca un fisier, dar poti scrie doar intr-un capat
+- cum creem pipe : int p[2]; pipe(p);
+- prin pipe, prin unul scriem, prin altul citim
+- prin pipe , fiul si parintele pot comunica
+- prin pipe nu numai citesti, ci scoti datele
+- prin pipe pot comunica doar procesele ce mostenesc acel pipe de la cineva
+- inchideti capetele pipe-ului cat mai curând posibil, daca nu programul va ingheta!!!
+
+
+EXRCITII GREP/SED/AWK
+  567  cat passwd.fake
+  568  cat ps.fake
+  569  cat ps.fake | awk '{print $1 $2 $3 $4}'
+  570  cat ps.fake | awk '{print $1" "$2" "$3" "$4}'
+  571  cat ps.fake | awk 'NR %2 == 0{print $1" "$2" "$3" "$4}'
+  572  cat ps.fake | awk '{print $1" "$2" "$3" "$4}'
+  573  cat ps.fake | awk 'NR %2 == 0{print $1" "$2" "$3" "$4}'
+  574  2//
+  575  cat ps.fake | grep -E -v "[0-9a-b]$"
+  576  cat ps.fake | grep -E -v "[0-9a-zA-Z]$"
+  577  cat ps.fake | grep -E -v "[0-9a-zA-Z]"
+  578  cat ps.fake | grep -E  "^[^0-9a-zA-Z]$"
+  579  cat ps.fake | grep -E  "^[^0-9a-zA-Z]*$"
+  580  vim ps.fake
+  581  cat ps.fake | grep -E -v "[0-9a-zA-Z]"
+  582  cat ps.fake | grep -E  "^[^0-9a-zA-Z]*$"
+  583  //last 2 correct la ex 2
+  584  //3
+  585  history
+  586  cat ps.fake | sed -E 's/[0-9]+/(\1)/gi'
+  587  cat ps.fake | sed -E 's/[0-9]+/\1/gi'
+  588  cat ps.fake | sed -E 's/[0-9]+/\1\1/gi'
+  589  cat ps.fake | sed -E 's/([0-9]+)/\1\1/gi'
+  590  //4
+  591  cat ps.fake | awk '{print $#-1}'
+  592  cat ps.fake | awk '{print $#}'
+  593  cat ps.fake | awk '{print NF}'
+  594  cat ps.fake | awk '{for(i=1;i<NF;i++) print $i} END'
+  595  cat ps.fake | awk '{for(i=1;i<NF;i++) print $i}'
+  596  cat ps.fake | awk '^{for(i=1;i<NF;i++) print $i}$'
+  597  cat ps.fake | awk 'cat ps.fake | awk '{for(i=1;i<NF;i++) print $i}'{for(i=1;i<NF;i++) print $i}'
+  598  cat ps.fake | awk '^{for(i=1;i<NF;i++) printf "%s ", $i; printf "\n"}$'
+  599  cat ps.fake | awk '{for(i=1;i<NF;i++) printf "%s ", $i; printf "\n"}'
+  600  //or
+  601  cat ps.fake | sed -E "s/(\s)[^[:space:]]*$/\1/"
+  602  //5
+  603  cat ps.fake | awk 'NR%2==1{print NF}'
+  604  cat ps.fake | awk 'NR%2==1{print NR, print $(NF/2)}'
+  605  cat ps.fake | awk 'NR%2==1{print NR, print $NF}'
+  606  cat ps.fake | awk 'NR%2==1{print NR},{print NF}'
+  607  cat ps.fake | awk 'NR%2==1{print NR, $NF}'
+  608  cat ps.fake | awk 'NR%2==1{print NR, $N(F/2)}'
+  609  cat ps.fake | awk 'NR%2==1{print NR, $(NF/2)}'
+  610  //6
+  611  cat passwd.fake
+  612  cat passwd.fake | sed 's/(&2)($3)/\2\1/g'
+  613  cat passwd.fake | sed -E 's/(&2)($3)/\2\1/g'
+  614  cat passwd.fake
+  615  cat passwd.fake | sed -E 's/(&2)($3)/\2\1/g'
+  616  cat passwd.fake | sed -E 's/($2)($3)/\2\1/g'
+  617  cat passwd.fake
+  618  cat passwd.fake | sed -E 's/^([^:]*):([^:]*):([^:]*)/\1:\3:\2:/'
+  619  cat passwd.fake
+  620  cat passwd.fake | sed -E 's/^([^:]*):([^:]*):([^:]*)/\1:\3:\2:/'
+  621  cat passwd.fake | sed -E 's/^([^:]*):([^:]*):([^:]*)/\1:\3:\2/'
+  622  //7
+  623  cat ps.fake
+  624  vim ps.fake
+  625  vim ps.fake | grep -E -i "^[^:]*([aeiou][^:]*){0,5}"
+  626  vim ps.fake | awk -F^ | grep -E -i "^([aeiou]){0,5}"
+  627  vim ps.fake | awk -F^ '{print $1}'
+  628  cat ps.fake | grep -E -i "^[^:]*([aeiou][^:]*){0,5}"
+  629  cat ps.fake | awk -F^ | grep -E -i "^([aeiou]){0,5}"
+  630  cat ps.fake | awk -F^ '{print $1}'
+  631  cat ps.fake | awk -F^ 'for(int i=0;i<=NF;i++) if (grep "^([aeiou]*){0,5}") {print $i}'
+  632  grep -E '^[^^]*(^[^^]*[aeiouAEIOU][^^]*){0,5}$' ps.fake
+  633  grep -E '^(^[^^]*[aeiouAEIOU][^^]*){0,5}$' ps.fake
+  634  grep -E '^(^[^^]*([aeiouAEIOU]){0,5}[^^]*)$' ps.fake
+  635  grep -E '^(^[^^]+([aeiouAEIOU]){0,5}[^^]+)$' ps.fake
+  636  grep -E '^(([aeiouAEIOU]){0,5})$' ps.fake
+  637  grep -E '^([aeiouAEIOU]){0,5}$' ps.fake
+  638  grep -E '^[]([^^]+([aeiouAEIOU]){0,5}[^^]+)$' ps.fake
+  639  grep -E '^([^^]+([aeiouAEIOU]){0,5}[^^]+)$' ps.fake
+  640  grep -E "\^([^aeiouAEIOU]*[aeiouAEIOU][^aeiouAEIOU]*){0,5}\^" ps.fake
+  641  //8
+  642  sed -E "s/^[a-z]$/^$/"ps.fake
+  643  sed -E "s/^[a-z]+$/^$/"ps.fake
+  644  sed -E "s/^[a-z]+$/^$/" ps.fake
+  645  sed -E "s/^[a-z]+$/ /" ps.fake
+  646  sed -E "s/^[a-z]+$//" ps.fake
+  647  vim ps.fake
+  648  sed -E "s/^[a-z]+$//" ps.fake
+  649  sed -E "s/^[a-z]+$//gi" ps.fake
+  650  vim ps.fake
+  651  sed -E "s/^[a-z]+$//" ps.fake
+  652  sed -E "s/\<[a-z]+\>//" ps.fake
+  653  vim ps.fake
+  654  sed -E "s/\<[a-z]+\>//" ps.fake
+  655  vim ps.fake
+  656  sed -E "s/\<[a-z]+\>//" ps.fake
+  657  vim ps.fake
+  658  sed -E "s/\<[a-z]+\>//" ps.fake
+  659  ps -ef
+  660  //9
+  661  ps -ef
+  662  ps -ef | grep -E -v "^UID"
+  663  ps -ef | grep -E -v "^UID" | awk '{print $1}'
+  664  ps -ef | grep -E -v "^UID" | awk '{print $1}' | uniq -c
+  665  ps -ef | grep -E -v "^UID" | awk '{print $1}' | uniq
+  666  ps -ef | grep -E -v "^UID" | awk '{print $1}' | uniq -c | sort
+  667  //10
+  668  la -l
+  669  ls -l
+  670  man la
+  671  ls -l | awk '{printf $NF}'
+  672  ls -l | awk '{print $NF}'
+  673  ls -l | awk '{print $1" "$NF}' |
+  674  ls -l | awk '{print $1" "$NF}'
+  675  ls -l | awk '{print $1" "$NF}' | sed -E "s/^.(...).{7}/\1/"
+  676  ls -l | awk '{print $1" "$NF}' | sed -E "s/^.(...).{6}/\1/"
+
+	  cat last.fake
+  569  vim last.fake
+  570  cat last.fake
+  571  cat last.fake | awk '{print $1}'
+  572  cat last.fake | awk '{print $1}' | uniq
+  573  cat last.fake | awk '{print $1}' | uniq -c
+  574  cat last.fake | awk '{print $1}' |sort| uniq -c
+  575  // sort before uniqcat last.fake | awk '{print $1}' |sort| uniq -ccat last.fake | awk '{print $1}' |sort| uniq -c
+  576  //16
+  577  cat last.fake | grep -E -c ".*"
+  578  //-c count
+  579  //17
+  580  sort last.fake
+  581  sort last.fake| uniq -c
+  582  sort last.fake| uniq -c | awk 'BEGIN{c=0}$1>1{c++} END{print "Duplicates: "c}
+  583  sort last.fake| uniq -c | awk 'BEGIN{c=0}$1>1{c++} END{print "Duplicates: "c}'
+  584  //18
+  585  ls -l dir
+  586  ls -l
+  587  ls -l | awk 'BEGIN{sum=0} sum+=$5 END{print "SUM: "sum}'
+  588  ls -l | awk 'BEGIN{sum=0} sum+=$5 END {print "SUM: "sum}'
+  589  //19
+  590  cat fake.passwd
+  591  cat passwd.fake
+  592  cat passwd.fake | sed "s/0123456789/1234567890/"
+  593  cat passwd.fake | sed "y/0123456789/1234567890/"
+  594  cut -d: -f1 passwd.fake | sed "s/0123456789/1234567890/"
+  595  cut -d: -f1 passwd.fake | sed "y/0123456789/1234567890/"
+  596  cut -d: -f1 passwd.fake | sed "s/0123456789/1234567890/"
+  597  cut -d: -f1 passwd.fake | sed "y/01234567
+  598  cut -d: -f1 passwd.fake | sed "y/0123456789/1234567890/"
+  599  //20
+  600  vim f.awk
+  601  ps -ef | awk -f f.awk --posix
+  602  ps -ef | awk 'for(i=2;i<NF;i+=2) {$1=""} print $0}'
+  603  ps -ef | awk '{ for(i=2;i<NF;i+=2) {$1=""} print $0}'
+  604  ps -ef | awk 'for(i=2;i<NF;i+=2) {$1=""} print $0}' //21
+  605  ps -ef | awk '{ for(i=2;i<NF;i+=2) {$1=""} print $0}' //21
+  606  history
+11. Display the number of lines that end in a vowel and the number of lines that end in a
+consonant from a file.
+awk -f file.awk input.txt
+Where the contents of file.awk are:
+BEGIN {
+c=0;
+v=0;
+}
+$0 ~ /[aeiouAEIOU]$/ {
+v++;
+}
+$0 ~ /[a-zA-Z]$/ && $0 ~ /[^aeiouAEIOU]$/ {
+c++;
+}
+END {
+print "Number of lines ending with vowel: "v;
+print "Number of lines ending with consonant: "c;
+}
+
+12.Calculate the sum of all PIDs (process IDs) that use one of the editors: vim, joe, emacs, nano,
+pico. Use ps -ef or ps aux to get a list of all the existing processes from the system.
+ps -ef | grep -E "^([^ ]+[ ]+){7}(vim|joe|nano|pico|emacs)" | awk 'BEGIN
+{sum=0;} {sum+=$2;} END{print "Sum: "sum}'
+13.Display all the users in the system (from the /etc/passwd file) whose username starts with a
+vowel.
+grep -E -i "^[aeiou]" /etc/passwd
+14. Display all the regular files from the current folder that have read permissions for the owner,
+group and other.
+ls -l | grep -E "^-(r..){3}"
+
+
+ 1  vim ex.sh
+    2  ls
+    3  vim ex.sh
+    4  chmod +x ex.sh\
+    5  chmod +x ex.sh
+    6  ./ex.sh
+    7*
+    8  man fie\le
+    9  man file
+   10  man shift
+   11  vim ex.sh
+   12  man while
+   13  man if
+   14  vim ex.sh
+   15  vim ex.txt
+   16  vim ex.sh
+   17  ./ex.sh
+   18  ./ex.sh ex.txt ex
+   19  vim ex.sh
+   20  ./ex.sh ex.txt ex
+   21  vim ex.sh
+   22  ./ex.sh ex.txt ex
+   23  man shift
+   24  vim ex.sh
+   25  ./ex.sh ex.txt ex
+   26  vim ex.sh
+   27  ./ex.sh ex.txt ex
+   28  :wq
+   29  vim ex.sh
+   30  ./ex.sh ex.txt ex
+   31  vim ex.sh
+   32  man shift
+   33  vim ex.sh
+   34  ./ex.sh ex.txt ex
+   35  vim ex.sh
+   36  ./ex.sh ex.txt ex
+   37  vim ex.sh
+   38  ./ex.sh ex.txt ex
+   39  vim ex.sh
+   40  ./ex.sh ex.txt ex
+   41  vim ex.sh
+   42  ./ex.sh ex.txt ex
+   43  vim ex.sh
+   44  ./ex.sh ex.txt ex
+   45  vim ex.sh
+   46  ./ex.sh ex.txt ex
+   47  vim ex.sh
+   48  ./ex.sh ex.txt ex
+   49  vim ex.sh
+   50  man test
+   51  vim ex.sh
+   52  ./ex.sh ex.txt ex
+   53  vim ex.sh
+   54  ./ex.sh ex.txt ex
+   55  ./ex.sh ex.txt
+   56  vim ex.sh
+   57  ./ex.sh ex.txt
+   58  vim ex.sh
+   59  ./ex.sh ex.txt
+   60  cat file2 >
+   61  cat >file2
+   62  cat file2
+   63  CUVINTE=$(cat file2)
+   64  echo CUVINTE
+   65  echo $CUVINTE
+   66  vim read_ex.sh
+   67  chmod +x  read_ex.sh
+   68  ./read_ex.sh file2
+   69  vim read_ex.sh
+   70  ./read_ex.sh file2
+   71  ./read_ex.sh
+   72  vim read_ex.sh
+   73  vim ex.sh
+   74  ./ex.sh ex.txt
+   75  vim ex.sh
+   76  ./ex.sh ex.txt
+   77  vim ex.sh
+   78  ./ex.sh ex.txt
+   79  vim ex.sh
+   80  ./ex.sh ex.txt
+   81  vim ex.sh
+   82  ./ex.sh ex.txt
+   83  vim ex.sh
+   84  ./ex.sh ex.txt
+   85  vim ex.sh
+   86  ./ex.sh ex.txt
+   87  vim ex.sh
+   88  $(()) - arithmetic expresion
+   89  NR - in awk number of record
+   90  awk - oricum parcurge linie cu linie
+   91  man awk
+   92  man wc
+   93  man #
+   94  #LINE - nr de caractere in line
+   95  if echo $1 | grep -E -q
+
+
+EXERCIES FOR SHELL PROGRAMMING 
+
+vim ex1.sh
+  610  vim ex10.sh
+  611  ls -l
+  612  chmod u+x ex10.sh
+  613  ./ex10.sh
+  614  vim ex10.sh
+  615  ./ex10.sh
+  616  vim ex10.sh
+  617  ./ex10.sh
+  618  vim ex10.sh
+  619  ./ex10.sh word1 word2
+  620  vim ex10.sh
+  621  ./ex10.sh word1 word2
+  622  vim ex10.sh
+  623  ./ex10.sh word1 word2
+  624  vim ex10.sh
+  625  ./ex10.sh word1 word2
+  626  vim ex10.sh
+  627  ./ex10.sh bin bash
+  628  vim ex10.sh
+  629  ./ex10.sh bin bash
+  630  vim ex2.sh
+  631  ./ex10.sh out gcc
+  632  vim ex10.sh
+  633  ./ex10.sh out gcc
+  634  vim ex11.sh
+  635  vim ex10.sh
+  636  vim ex11.sh
+  637  cut passwd.fake
+  638  cat passed.fake
+  639  cat passwd.fake
+  640  vim ex11.sh
+  641  chmod u+x ex11.sh
+  642  ./ex11.sh
+  643  vim ex11.sh
+  644  cat passwd.fake | last
+  645  last.fake
+  646  cat last.fake
+  647  last
+  648  vim ex11.sh
+  649  ./ex11.sh
+  650  vim ex11.sh
+  651  ./ex11.sh
+  652  ls -l
+  653  ls
+  654  cat last.fake
+  655  vim srir1572
+  656  cat passwd.fake
+  657  vim mpie0108
+  658  vim last.fake
+  659  ./ex11.sh
+  660  vim mpie0108
+  661  vim ex11.sh
+  662  cat last.fake
+  663  vim ex11.sh
+  664  ./ex11.sh
+  665  vim mpie0108
+  666  vim ex12.sh
+  667  chmod u+x ex12.sh
+  668  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  669  vim ex12.sh
+  670  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  671  vim file.txt
+  672  vim file1.txt
+  673  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  674  vim ex12.sh
+  675  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  676  ./ex12.sh file.txt word1 2 file1.txt word2 sd
+  677  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  678  vim ex12.sh
+  679  vim file1.txt
+  680  vim file.txt
+  681  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  682  vim ex12.sh
+  683  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  684  vim ex12.sh
+  685  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  686  vim ex12.sh
+  687  ./ex12.sh file.txt word1 2 file1.txt word2 4
+  688  vim ex13.sh
+  689  chomod u+x ex13.sh
+  690  chmod u+x ex13.sh
+  691  ./ex13.sh ex1.sh etc file
+  692  ls
+  693  ./ex13.sh ex1.sh dir1 file
+  694  ./ex13.sh ex1.sh dir1
+  695  ls -l
+  696  mkdir d
+  697  ls
+  698  ./ex13.sh ex1.sh d
+  699  vim ex13.sh
+  700  ./ex13.sh ex1.sh d
+  701  ./ex13.sh ex1.sh file d
+  702  vim ex13.sh
+  703  ./ex13.sh ex1.sh file d
+  704  ./ex13.sh ex1.sh d
+  705  vim ex13.sh
+  706  ./ex13.sh ex1.sh d
+  707  vim ex13.sh
+  708  ./ex13.sh ex1.sh d
+  709  vim ex1.sh
+  710  vim ex13.sh
+  711  ./ex13.sh ex1.sh d
+  712  ./ex13.sh ex1.sh file d
+  713  cd d
+  714  vim text.txt
+  715  cd
+  716  ./ex13.sh ex1.sh file d
+  717  vim ex13.sh
+  718  ./ex13.sh ex1.sh file d
+  719  vim ex14.sh
+  720  chmod u+x ex14.sh
+  721  ./ex14.sh file
+  722  ./ex14.sh 3
+  723  vim ex14.sh
+  724  ./ex14.sh 3
+  725  ./ex14.sh d
+  726  vim ex14.sh
+  727  ./ex14.sh 3
+  728  vim ex14.sh
+  729  ./ex14.sh 3
+  730  ls
+  731  cat file_1
+  732  man test
+  733  man find
+  734  vim ex15.sh
+  735  chmod u+x ex15.sh
+  736  /.ex15.sh
+  737  ./ex15.sh
+  738  vim ex15.sh
+  739  ./ex15.sh
+  740  history
+
+
+lecture 06: 
+
+
+
+- be careful with read and write for pipe, because they wait until they have what to read the pipe, that is why CLOSE PIPE ENDS AS SOON AS POSSIBLE to not block forever
+
+FIFO:
+
+- a named pipe
+- open the fifo as you open it 
+- mkfifo
+- at the end you should delete them, if not you may end up locking your program 
+- in fifo when you open it  waits, example when you open for write waits for you to open for read in another program 
+
+POPEN:
+- writes a bash command
+- gives back a file pointer 
+- completely different from open
+- closing it with pclose
+
+
+
+
+lab 9:
+- a FIFO has a path, it can exist outside the life of the process, the pipe doesnt
+- 
+
+SEMNAR 5:
+THREDS!!!!!
+- multithreded process has the threds state and process state, code segment, data segment, heap -> <- stack => stack particular to each thred
+- with threds we reuse resources 
+- pthred_create !!! 
+- pointers of threds cannot be reused
+- pthred_join, like the wait() for processes
+- main thred waiting for the other threds to finish
+- pthred_self() - id
+- never in the same loop, pthred_create and pthred_join!!!
+- we need malloc for heap 
+Mutex:
+- pthred_mutex_lock
+- pthred_mutex_unlok
+- global variable cannot make an atomic operation(thred safe op, it cannot be interrupted)
+- mutex make a non-atomic op atomic
+- pthred_mutex_lock(&exclusive), one op at time
+- use lock for the minimum amount of code, so the threds are cuncurently
+- mutex only on global variables!!! 
+Read Write Lock:
+- pthred_rwlock_rdlock allows any number of readers to access resource for read only, but not to write
+- pthrd_rwlocck_wrlock allows only one writer
+- only one thread comes out of lock 
+
+SEMAPHORES:
+- controlling how many in the critical section 
+- generalized mutex
+
+BARRIERS:
+- we contine when all done or we do not go further unless x threads are here 
+
+RWLOCKS:
+- mutex generalization for preformance 
+- mutex or binary semaphores  
+- leave the optimization second, first make sure it works!!!!!
+- m mutex, n number of threads
+
+w           		|          s
+				lock(&m)
+lock(&m)			n++;
+while(n<=1000){			if(n>1000){
+	wait(&c, &m)			signal(&c)
+}				}
+... //action,cleanup 		unlock(&m)	
+unlock(&m)			//do stuff 
+...				lock(&m)
+				n--
+ 				unlock(&m)
+
+
+- prodcast -> wait but for all
+- trylock(&m) -> 0 on success (if its unlocked, it locks it)
+- sem_wait -> decrements with one in semaphores the initial value of the semaphore
+- make atomic with mutex lock/unlock
+
+MAY BE IN THE WRITTEN EXAM: (PRODUCER/CONSUMER)
+- pipe comunication problem actually 
+- producers putting in buffer and consumers getting from buffer 
+- pipe -> a byte buffer
+- making in such a way 1 unit at a time, 1 byte at a time
+- 2 semaphores f(full) = 0, e(empty) = n(size of the buffer)
+
+prod 		| 	cons
+
+wait(e)			wait(f)
+produce			consume
+post(f)			post(e)
+
+- can also with 3 semaphores x=1, so the same prod or cons to not want to access the same space from the buffer at the same time 
+
+prod 		| 	cons
+
+wait(e)			wait(f)
+lock(x)			lock(x)
+produce			consume
+unlock(x)		unlock(x)
+post(f)			post(e)

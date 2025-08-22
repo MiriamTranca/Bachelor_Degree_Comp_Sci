@@ -1,0 +1,36 @@
+2023 OS
+
+1. grep -E ' [0-9]*[05] ' a.txt
+grep -E '\<[0-9]*[05]\>' a.txt
+grep -E '\<0*[1-9]*[05]\>' a.txt
+
+2. grep -E '[aA]' a.txt
+grep -E '[aA]+' a.txt
+grep -E '.*[aA].*' a.txt
+grep -E '^.*[aA]' a.txt
+grep -E '[aA].*$' a.txt
+
+3. sed -n '/7/!p' filename
+sed '/7/d' filename
+
+4. awk '{ sum += $(NF-1) } END { print sum }' filename
+
+5. command 2>&1 | other_command
+
+6. #!/bin/bash
+
+while [ $# -gt 0 ]; do
+	echo $0
+	shift 1
+done
+
+7. p->c1 
+then because of the execlp that happens in both the parent process and the child process the for does not continue, because if the execlp is successful the code after will not execute, the current process is replaced by execlp with a new process image. 
+
+8. execlp("cat", "cat", "a.txt", ">", "b.txt", NULL);
+
+9. Beacuse we are not sure of the order in which the process will write in the fifo, which can cause data corruption. 
+
+10. If the FIFOs wont be used, the process will open the first FIFO and then be blocked up until there is a writer, since there wouldn't be a writer, the FIFO would remain blocked and no other FIFO would be opened until this FIFO has a writer and a reader, so 1.
+
+11. I would use processes if i want to simplify synchronization and enhance security by avoiding memory shared issues. Processes provide better isolation and stability, eith separate memory spaces ensuring that a crash in one wont effect the other.

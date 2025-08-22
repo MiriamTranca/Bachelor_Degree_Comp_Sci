@@ -1,0 +1,191 @@
+2023 OS 
+1. RO: Daţi o expresie regulară care acceptă orice număr impar de cuvinte separate prin spaţii, fiecare cuvânt având număr impar de litere. - 0, 10 
+EN: Give a regular expression that matches any odd number of words, each word having an odd number of letters.
+ 
+grep -E '^([A-Za-z][A-Za-z])*[A-Za-z] ([A-Za-z][A-Za-z])*[A-Za-z] ([A-Za-z][A-Za-z])*[A-Za-z] ){0,}$'
+
+
+
+2. RO: Daţi patru comenzi care afişează numărul de linii goale dintr-un fişier.-8, 8
+EN: Give four commands that display the number of empty lines in a file.
+grep -E '^$' file.txt | wc -l
+grep -c '^$' file.txt
+awk 'NF==0 {count++} END {print count}' file.txt
+sed -n '/^$/p' | wc -l
+
+3. RO: Scrieţi o comandă SED care afişează liniile dintr-un fişier ştergând din ele primul, al treilea, al cincilea, al şaptelea, etc spaţii. - 0, 7
+EN: Write a SED command that displays a file's lines deleting the first, the third, the fifth, the seventh, etc space on those lines
+sed -E "s/( )([^ ]+)?( )?/\2\3/gi" test.txt
+
+
+
+4. RO: Scrieţi o comandă AWK care afişează produsul ultimului câmp al liniilor de pe poziţii impare care au număr impar de câmpuri. - 10, 10
+EN: Write an AWK command that displays the product of the last field of lines on odd positions having an odd number of fields.
+awk 'BEGIN { prod=1 }
+     NR % 2 == 1 && NF % 2 == 1 { prod *= $NF }
+     END { print prod }' file.txt
+
+
+
+5. RO: Daţi patru moduri prin care ieşirea standard a unui proces poate fi redirectată. - 5, 10
+EN: Give four ways of redirecting the standard output of a process.
+command > file.txt
+command >> file.txt
+command &> file.txt
+command 2>&1 file.txt
+
+6. RO: Scrieţi trei condiţii Shell UNIX care verifică existenţa unui fişier. - 8, 10
+EN: Write three UNIX Shell conditions that check the existence of a file.
+if [ -f file ]
+if test -f file
+if [[ -f file ]]
+
+
+
+7. RO: Desenati ierarhia proceselor create de coduld e mai jos, incluzand procesul parinte. - 10, 10
+EN: Draw the hierarchy of processes created by the code below, including the parent process.
+
+    for(i=0; i<3; i++) {
+        if(execlp("ls", "ls", "/", NULL) != -1) {
+            fork();
+        }
+    }
+P0 
+no child processes, because if exclp != -1 then the process is replaced immediately
+
+8. RO: Adăugaţi codul C necesar pentru ca instrucţiunea de mai jos să nu se blocheze aşteptând la intrarea standard. - 7, 10
+EN: Add the necessary code so that the instruction below does not get stuck waiting for standard input.
+    execlp("cat", NULL);
+		
+int fd = open("/dev/null", O_RDONLY, 0666);
+dup2(fd, STDIN_FILENO);
+close(fd);
+execlp("cat","cat", NULL);
+//the given exclp not correct
+
+	
+
+9. RO: Schiţaţi o implementare a funcţiilor popen şi pclose, doar pentru cazul în care outputul comenzii e citit în codul C. - 0, 0
+EN: Sketch an implementation of the popen and pclose functions, only for the case when the command output should be read in the C code.
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+static int child_pid;
+
+FILE *mypopen(const char *command) {
+    int pipefd[2];
+    pipe(pipefd);
+
+    child_pid = fork();
+    if (child_pid == 0) {
+        close(pipefd[0]); 
+        dup2(pipefd[1], 1);
+        execlp("sh", "sh", "-c", command, NULL);
+        exit(1);
+    }
+    close(pipefd[1]); 
+    return fdopen(pipefd[0], "r");
+}
+
+int mypclose(FILE *fp) {
+    fclose(fp);
+    int status;
+    waitpid(child_pid, &status, 0);
+    return status;
+}
+
+
+
+10. RO: Câte FIFO-uri poate deschide pentru citire un process, dacă FIFO-urile sunt şi vor fi întotdeauna folosite de alte procese doar pentru citire? - 10, 10
+EN: How many FIFOs can a process open for reading if the FIFOs are and will ever be used by other processes only for reading?
+There will be only one FIFO that the process will open for reading, because it will be blocked until there is another process that writes to it, but if we say that the FIFOs would be used only for reading, then it will remain blocked.
+
+
+
+11. RO: Când aţi folosi un FIFO în locul unui pipe? - 2, 10
+EN: When would you prefer using a FIFO instead of a pipe?
+I would use FIFO if the processes i want to communicate are not related, they do not have a child-parent relation or are not the children of the same parent process. This is the main reason i would use FIFO, which are name pipes created by mkfifo(), but it is very important that the processes can access the same file system and have the required permissions. 
+
+
+
+12. RO: Ce este o "secţiune critică"? - 10, 10
+EN: What is a "critical section"?
+A critical section is a portion of code that accesses shared resources (like variables, files, or hardware) and must not be executed by more than one thread or process at the same time.
+
+To prevent race conditions and ensure data consistency, critical sections are protected using synchronization mechanisms like mutexes, semaphores, or other locking techniques. Without them there is a highly possibility of having conflicts or inconsistent results, that change with every execution.
+
+
+
+13. RO: Când aţi folosi un mutex în locul unui rwlock? - 7, 7
+EN: I would prefer using a mutex instead of a read-write lock (rwlock) when there is no need to allow multiple readers to access the critical section simultaneously, or when threads are not clearly separated into readers and writers.
+
+In such cases, a mutex is simpler and sufficient to protect shared data from being accessed by multiple threads at the same time, whether they are reading or writing. A mutex also ensures mutual exclusion, avoids rge complexity of tracking which threads are readers and which are writers.
+
+
+
+14. RO: Care va fi efectul înlocuirii apelurilor la pthread_mutex_lock cu apeluri la sem_wait? - 4, 0
+EN: What will be the effect of replacing calls to pthread_mutex_lock with calls to sem_wait?
+Using sem_wait instead of locking mutexes, means using semaphores instead of mutexes for our threads. Semaphores are used to control access to a common resource by multiple processes/threads in a concurrent system. When using sem_wait the value decrements and if it is 0 the thread is blocked until the value of the semaphore is >0 again and when using sem_post it increments. There also exists the binary semaphore which works very similar to the mutex, being a primitive synchronization that can have only two values 0 and 1. This is used to manage access to a single shared resource to synchronize the action of multiple thteads. In general it is better to use mutexes instead of binary semaphores, but if there are multiple resources then we need semaphores.
+
+
+
+15. RO: Ce face pthread_cond_wait cu mutex-ul primit ca argument? - 0, 9
+EN: What does pthread_cond_wait do with the mutex it gets as argument?
+The mutex passed to pthread_cond_wait protects the shared condition that threads check or modify. It ensures that checking the condition and going to sleep happens atomically without race conditions. The mutex is released while the thread is waiting, allowing other threads to change the condition, and is re-acquired when the thread wakes up.
+
+
+
+16. RO: Schiţaţi o soluţie pentru problema producător-consumator. 5, 8
+EN: Sketch a solution for the producer-consumer problem.
+semaphore plin, gol, exclus;
+v0(plin) = 0;
+v0(gol) = n;
+ v(exclus) = 1;
+
+//producer
+do {
+ <produce articol>;
+ P(gol);
+ P(exclus);
+ <depune articol în buffer>;
+ V(exclus);
+ V(plin);
+} while(false);
+
+//consumer
+do {
+P(plin);
+P(exclus);
+<extrage articol din buffer>;
+V(exclus);
+V(gol)
+<consuma articol>;
+} while(false);
+
+
+17. RO: Ce puteţi face ca programator pentru a preveni deadlock-urile? 10, 10
+EN: What can you do as a software developer to prevent deadlocks?
+Deadlocks arise when four conditions are met: mutual exclusion, hold and wait, no preemption, and circular wait. By breaking any one of these conditions—especially circular wait (via lock ordering) or hold-and-wait (by avoiding nested locks). So as a programmer you should avoid nested locks and ensure proper ordering, minimize the lock scope and avoid holding multiple locks at once.
+
+
+
+
+18. RO: Prin ce tranziţie de stare va trece un process când apelează pthread_cond_wait? Justificaţi răspunsul. - 5, 5
+EN: What state transition will a process undergo when it calls pthread_cond_wait? Justify your answer.
+Before the pthread_cond_wait the thread is RUNNING (the thread is currently executed by the CPU). Then when pthread_cond_wait if called it goes from RUNNING to WAIT, the thread wiats for the event, here the realease of the mitex and blocking to happen. Then it goes from WAIT to READY, when the event the thread was waiting for has occurred.
+
+
+
+19. RO: Ce conţinue un fişier de tip director în sistemul de fişiere Linux? - 2, 8
+EN: What is the content of file of type directory in the Linux file system?
+A directory file stores the list of entries, where each entry represemts a filename and its corresponding i-node number, which is a unique identifier pointing to the i-node of the file or subdirectory it refers to.
+
+
+20. RO: Explicaţi diferenţa dintre un link simbolic şi un link hard. - 6, 8
+EN: Explain the difference between a symbolic link and a hard link.
+A hard link is an additional directory entry that points directly to the same inode as the original file. Both the original file and the hard link share the same inode number and refer to the exact same data on disk. Changes made through one hard link are reflected in the other. The file’s data remains on disk until all hard links are removed. Hard links cannot span across different filesystems and generally cannot be created for directories.
+
+A symbolic link (soft link) is a special file that contains a pathname pointing to another file or directory. It has its own inode and acts as a shortcut or alias. If the target file is deleted, the symbolic link becomes broken. Symbolic links can link to directories, span across filesystems, and can even point to non-existent targets.
+

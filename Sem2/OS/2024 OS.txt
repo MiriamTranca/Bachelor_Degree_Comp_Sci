@@ -1,0 +1,204 @@
+2024 OS
+
+1.
+RO: Daţi trei expresii regulare care acceptă orice linie care conţine cel puţin două vocale dar nicio cifră.
+EN: Give three regular expressions that match any line that contains a least two vowels but no digits.
+
+Answer:
+
+grep -E '^[^0-9]*[aeiouAEIOU][^0-9]*[aeiouAEIOU]'
+grep -v '[0-9]' | grep -E '[aeiouAEIOU].*[aeiouAEIOU]'
+grep -E '[aeiouAEIOU].*[aeiouAEIOU]' | grep -v '[0-9]'
+
+
+2.
+RO: Daţi o comandă GREP care afişează toate liniile dintr-un fişier care conţin un număr par de vocale (pe lângă alte eventuale caractere).
+EN: Give a GREP command that display all the lines in a file that contain an even number of vowels (among other potential characters).
+
+Answer:
+grep -E '^([AEIOUaeiou][^AEIOUaeiou]*[AEIOUaeiou][^AEIOUaeiou])*[^aeiouAEIOU]*$' filename
+
+
+3.
+RO: Scrieţi o comandă SED care afişează dintr-un fişier doar liniile care conţin exclusiv o expresie artimetică validă conţinând adunări şi scăderi de numere întregi.
+EN: Write a SED command that display from a file only the lines that contain exclusively a valid artihmetical expression of integer additions and subtractions.
+
+Answer:
+
+sed -n '/^[-]?[0-9]\+[-+][0-9]\+$/p' filename
+
+
+4.
+RO: Scrieţi o comandă AWK care afişează suma câmpurilor de pe poziţia egală cu numărul liniei curente.
+EN: Write an AWK command that displays the sum of the fields on the position equal to the current line number.
+
+Answer:
+
+awk '{ sum+=$NR } END {print sum }' 
+
+
+
+5.
+RO: Daţi două soluţii pentru a ascunde ieşirea standard şi ieşirea de eroare a unei comenzi prin redirectarea în /dev/null.
+EN: Give two solutions for hiding a commands standard and error outputs by redirecting them to /dev/null.
+
+Answer:
+
+2> /dev/null > /dev/null
+
+&> /dev/null
+
+
+6.
+RO: Scrieţi un script Shell UNIX care cere utilizatorului un nume director şi insistă până când primeşte un director care nu există deja.
+EN: Write a UNIX Shell script that asks the user for a directory name and insists until it gets a directory that does not exist already.
+
+Answer:
+#!/bin/bash
+
+while true; do
+	read dirname
+
+	if [! -d "$dirname" ]; then 
+		echo "Dir not exist."
+		break;
+	else 
+		echo "Exists give another"
+
+
+7.
+RO: Desenati ierarhia proceselor create de codul de mai jos, incluzand procesul parinte.
+EN: Draw the hierarchy of processes created by the code below, including the parent process.
+
+    for(i=0; i<2; i++) {
+        fork();
+        execl("/etc", "/etc", NULL);
+    }
+
+Answer:
+if execl succes 
+P0
+|
+C1 
+
+else 
+P0 ------
+|	|
+C1	c2
+|
+C3
+
+
+8.
+RO: Adăugaţi liniile de cod C necesare pentru ca instrucţiunea de mai jos să suprascrie conţinutul unui fişier b.txt. Nu modificaţi instrucţiunea.
+EN: Add the necessary lines of C code so that the instruction below overwrites the content of a file b.txt. Do not change the instruction.
+
+    execlp("sort", "sort", "a.txt", NULL);
+
+Answer:
+int fd = open("b.txt", O_WRONLY, 0666);
+dup2(fd, STDOUT_FILENO);
+close(fd);
+execlp("sort", "sort", "a.txt", NULL);
+
+
+9.
+RO: De ce nu e recomandat sa comunicaţi bidirecţional printr-un singur pipe?
+EN: Why is it not advisable to communicate bidirectionally through a single pipe?
+
+Answer:
+A pipe should be a one-way communication chaneel, because the data flows from the pipe's write end to the pipe's read end. If both processes try to write to the same pipe at the same time, data can get mixed or lost. Also there is the possibility of deadlock if both try to read when there's nothing to read. The pipe's do not distinguish between data from different senders on the same channel, this causes confusion in interpreting which data is from whom.
+
+
+10.
+RO: Ce va afişa secvenţa de comenzi de mai jos, considerând că f se creează ccu succes?
+EN: What will display the sequence of commands below, considering the f is created successfully?
+
+mkfifo f
+echo asdf > f
+cat f
+
+Answer:
+asfd, because we have the writer to the fifo and the reader
+
+
+11.
+RO: Când aţi folosi un process în locul unui thread?
+EN: When would you prefer using a process instead of a thread?
+
+Answer:
+When i want to ensure that a chrash in one of the processes does not effect the others. This happens because processes provide better isolation and stability by using separate memory spaces. This causes robust fault tolerance and security. They simplify the syncrhronization and enhance security.
+
+
+12.
+RO: Ce este o "resursă critică"?
+EN: What is a "critical resource"?
+
+Answer:
+A critical resource is a resource (such as data or memory) that must be accessed by only one process or thread at a time to prevent conflicts or inconsistent results. Usually the mutex is used to protect the critical section, where the cristical resource is found, ensuring that only one thread/process accesses the resource at a time.
+
+
+13.
+RO: De ce apelul pthread_cond_wait primeşte şi un mutex ca argument?
+EN: Why does the pthread_cond_wait call get also a mutex as argument?
+
+Answer:
+The mutex passed to pthread_cond_wait protects the shared condition that threads check or modify. It ensures that checking the condition and going to sleep happens atomically without race conditions. The mutex is released while the thread is waiting, allowing other threads to change the condition, and is re-acquired when the thread wakes up.
+
+
+
+14.
+RO: Care va fi efectul înlocuirii apelurilor la pthread_mutex_lock cu apeluri la pthread_rwlock_wrlock?
+EN: What will be the effect of replacing calls to pthread_mutex_lock with calls to pthread_rwlock_wrlock?
+
+Answer:
+Functionally, using pthread_rwlock_wrlock behaves the same as pthread_mutex_lock, allowing only one thread (the writer) into the critical section at a time. However, it provides flexibility to later introduce pthread_rwlock_rdlock, which would allow multiple threads to enter the critical section simultaneously as readers, when no writer is active.
+
+
+15.
+RO: Care e efectul apelului la sem_wait pentru un semafor cu valoarea zero?
+EN: What is the effect of calling sem_wait on a semaphore with value zero?
+
+Answer:
+Thw sem_wait attempts to decrease the semaphore value by 1. Because the semaphore value is already 0, the thread cannot proceed, so it blocks until another thread increments the semaphore, via sem_post. After that, the thread is unblocked, the value is decremented and the thread continues
+
+
+16.
+RO: Cum puteţi decrementa valoarea unui semafor?
+EN: How can you decrement the value of a POSIX semaphore?
+
+Answer: 
+The value of a POSIX semaphore is decremented by calling the sem_wait() function. If the semaphore’s value is greater than zero, sem_wait() decreases it by one and proceeds. If the value is zero, the calling thread blocks until the value becomes greater than zero.
+
+
+
+17.
+RO: Ce puteţi face ca programator pentru a preveni deadlock-urile? Justificaţi răspunsul.
+EN: What can you do as a software developer to prevent deadlocks? Justify your answer.
+
+Answer:
+Deadlocks arise when four conditions are met: mutual exclusion, hold and wait, no preemption, and circular wait. By breaking any one of these conditions—especially circular wait (via lock ordering) or hold-and-wait (by avoiding nested locks). So as a programmer you should avoid nested locks and ensure proper ordering, minimize the lock scope and avoid holding multiple locks at once.
+
+
+18.
+RO: Prin ce tranziţie de stare va trece un process când scrie într-un fişier?
+EN: What state transition will a process undergo when writing to a file?
+
+Answer:
+Possible transitions are from run to wait, because the process waits for some event to occure like O/I completion. Then from wait to ready, when the event has occurred and from raedy to run, when the scheduler selects the process from the reading queue to execute.
+
+
+19.
+RO: Ce conţinue superblocul unui disc Linux?
+EN: What is the content of the superblock on a Linux disk?
+
+Answer:
+The superblock contains crucial metadata about the file system. It includes information about the overall structure,size,status and configuration of the file system.
+
+20.
+RO: Considerând că într-un bloc încap N adrese spre alte blocuri, câte blocuri de date sunt adresate de indirectarea dublă împreună cu cea triplă a unui i-nod?
+EN: Considering that a block can contain N addresses towards other blocks, how many data blocks are addressed by an i-node's double and triple indirections together?
+
+Answer:
+N*N + N*N*N
+

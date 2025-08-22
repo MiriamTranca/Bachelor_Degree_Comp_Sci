@@ -1,0 +1,46 @@
+2021- MARIRE/RESTANTA OS
+
+
+1. give 2 ways of iterating over the command line arguments of a unix shell scipt
+
+#!/bin/bash
+count = 1 
+for arg in "$@"; do
+	echo "$count $arg"
+	count = $(( count + 1 ))
+done
+
+#!/bin/bash
+count = 1 
+while [ "@#" -gt 0 ]; do
+	echo "$count $arg"
+	shift
+	count = $(( count + 1 ))
+done
+
+2. The code will print 
+A
+B
+C , because the differences are made in the child processes which are ended by execl 
+
+3. 
+int n; 
+FILE* fp;
+fp = popen("who | wc -l", "r");
+fscanf(fp,"%d",&n);
+pclose(fp);
+printf("%d\n",n);
+
+4. 0 1 2 3 4 5 6 7 8 9 but we do not know in which order because the threads are not synchronized in a way, so we do not know which thread is going to execute first because of the race condition
+
+5. The risk lies in the double of sem_wait() and sem_post() on the same sempaphore in a single thread, even tho this is allowed beacuse semaphores dont track ownership, each thread attempts to decrement the semaphore twice usinf sem_wait, without releasing it in between , which can lead to deadlocks, because the threads are waiting for the semaphore but also they are holding it, and since no thread can proceed to sem_post(), no one can relese the semaphore.
+
+6. A process moves from the RUN state to the SWAP state when the system detects low available RAM. In response, the operating system suspends the currently running process, saves its memory contents to disk (swap space), and removes it from active memory. This action helps free up physical memory for higher-priority or more active processes.
+
+7. One advantage is that it divides the program into variable-sized segments instead of fixed-sized pages and one disadvantage is that it can lead to fragmentation, especially to external fragmentation, which is eliminated by paged allocation.
+
+8. I would use demand pagnig and i would load pages into the memory only when they are needed, using this approach would reduce rge initial load time and memory usage.
+
+9. For the cache with 2 sets of 4 pages there are more slots per sets, which means readuced conlfict misses. For the cahce with 4 sets of 2 pages there are more sets whichmeans posibble better distribution but fewer slotes per set. The first would preform better for this sequence due to fewer confilict misses.
+
+10. B*(10+N+N^2+N^3)

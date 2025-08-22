@@ -1,0 +1,106 @@
+2021-2022 OS 
+1. How many threads would you use for processing a million files? Justify your choice. 
+
+I would use a number of threads that is equal to the number of CPU cores, because the tasks benefit from parallelism only up to the number of cores; going beyond causes context-switching overhead without performance gain.
+
+
+2.How is the address calculation done in the absolute fixed partition allocation?
+
+in absolute fixed partition allocation, the address used by the process (after calculation) is the physical address.
+
+
+other: 
+1. grep -E '[0-9]*[05]' a.txt
+
+2. grep -E '\<([a-z]{1}|[a-z]{3}|[a-z]{5}|[a-z]{7}|[a-z]{9}|[a-z]{11}|[a-z]{13}|[a-z]{15})\>' a.txt
+ 
+3. cat a.txt | awk  '{ print $1 + $NF }'
+
+4. find . -type f | wc -l
+
+5. #!/bin/bash 
+
+find . -type f -name "*.c" -writable -exec chmod 600 {} +
+
+6. 15
+
+7. P0 
+    |
+    C1
+    |
+    C2----C3
+     |     |
+     C4    C5
+
+8. What happens with a process between the moment it finishes and the moment its parent calls wait? zombie
+
+2017-2018 Test A 
+1. grep -E '/<[A-Z][a-zA-Z]*/>' a.txt
+
+2. sed -E 's/([0-9])([0-9])/\2\1/g' a.txt
+
+4. sort a.txt | uniq -u
+
+5. considering the producer-consumer problem with a capacity N. How many semaphores would you use to insure operation correctness and what would be the semaphores' initial values ?
+3 empty,full,mutex 
+   n   , 0  , 1(unlocked)
+empty makes producers wait if buffer is full
+full makes consumers wait if buffer is empty
+mutex protects concurrent access to shared buffer so proudcers and consumers dont corrupt data
+
+6. under what conditions can UNIX processes communicate through PIPE? 
+are related 
+
+
+2018-2019 test D, OS 
+
+1. grep -E '[0-9]*\.[0-9]{3,}' a.txt
+
+2. sed 's/[^a-zA-Z]//g' a.txt
+
+3. awk '{ total += NF; lines++ } END { print total / lines }' a.txt
+
+4. find . -type f -printf "%f\n" | sort -u
+
+5. #!/bin/bash 
+
+	for file in *.txt; do
+    if [ -f "$file" ]; then
+        lines=$(wc -l < "$file")
+        total_lines=$((total_lines + lines))
+        file_count=$((file_count + 1))
+    fi
+done
+ 
+	echo "$(( number_lines / number_files ))"
+
+6. 15 processes 
+
+7. only one, because the next happen to the children
+
+20. add the necessary instructions to the code fragment below, so that the standard input of command /bin/pwd to be read from pipe p
+
+int p[2];
+
+pipe(2);
+
+if(fork() == 0){
+
+	execl("/bin/pwd","/bin/pwd",NULL);
+
+	exit(0);
+}
+
+
+int p[2];
+
+pipe(2);
+
+if(fork() == 0){
+	dup2(p[0], 0);     // ADD: redirect stdin to read end of pipe
+    	close(p[0]);       // ADD: close read end after duplication
+    	close(p[1]);  	  // no need to write from the child 
+	execl("/bin/pwd","/bin/pwd",NULL);
+
+	exit(0);
+}
