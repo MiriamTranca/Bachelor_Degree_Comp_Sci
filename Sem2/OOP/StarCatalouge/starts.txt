@@ -1,0 +1,6 @@
+star1,const1,10,20,30
+star3,const2,10,10,10
+star5,const2,10,10,10
+star4,const3,10,10,10
+star2,const3,20,30,60
+star52,const3,1,2,3
