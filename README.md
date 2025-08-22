@@ -5,7 +5,7 @@ This repository contains my work and exercises completed for my studies, prepara
 
 ## Contents
 
-- Programming assignments (Python, C++, Java, etc.)
+- Programming assignments (Python, C++, Assembly, Java, etc.)
 - Exercies used as preparation for exams
 - Source code and explanations
 
