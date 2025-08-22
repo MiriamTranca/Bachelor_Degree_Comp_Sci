@@ -1,0 +1,5 @@
+C:/Users/tranc/CLionProjects/IssueTracker/cmake-build-debug/CMakeFiles/IssueTracker.dir
+C:/Users/tranc/CLionProjects/IssueTracker/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/tranc/CLionProjects/IssueTracker/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/tranc/CLionProjects/IssueTracker/cmake-build-debug/CMakeFiles/IssueTracker_autogen_timestamp_deps.dir
+C:/Users/tranc/CLionProjects/IssueTracker/cmake-build-debug/CMakeFiles/IssueTracker_autogen.dir
