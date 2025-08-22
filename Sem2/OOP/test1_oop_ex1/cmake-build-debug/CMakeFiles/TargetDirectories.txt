@@ -1,0 +1,3 @@
+C:/Users/tranc/CLionProjects/test1_oop_ex1/cmake-build-debug/CMakeFiles/test1_oop_ex1.dir
+C:/Users/tranc/CLionProjects/test1_oop_ex1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/tranc/CLionProjects/test1_oop_ex1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
